@@ -609,7 +609,7 @@ function buildGrammatikblock(a, wiederholung) {
   currentGrammatikGesperrt = wiederholung.gesperrt || {};
   currentGrammatikVorherigeDaten = wiederholung.daten || {};
 
-  let html = a.wiederholungB1 ? `<p class="hint">Bearbeite alle Aufgaben. Am Ende schickst du den ganzen Block auf einmal ab — deine Lehrkraft bespricht ihn danach mit dir.</p>` : `<p class="hint">Lies jede Erklärung, dann bearbeite die passende Aufgabe dazu. Am Ende schickst du den ganzen Block auf einmal ab — deine Lehrkraft bespricht ihn danach mit dir.</p>`;
+  let html = a.wiederholungB1 ? `<p class="hint">Bearbeite alle Aufgaben. Am Ende schickst du den ganzen Block auf einmal ab — deine Lehrkraft bespricht ihn danach mit dir.</p>` : `<p class="hint">Lesen Sie jede Erklärung und bearbeiten Sie dann die passende Aufgabe. Am Ende schicken Sie den ganzen Block ab und sehen sofort Ihr Ergebnis.</p>`;
   html += wiederholung.hinweis || '';
 
   a.punkte.forEach((p, pi) => {
@@ -2061,7 +2061,7 @@ function buildEingangstest(t) {
       html += `<div class="et-ergebnis-box bestanden">
         <div style="font-size:40px;">✓</div>
         <h2 style="font-family:Georgia,serif; margin:8px 0;">Geschafft!</h2>
-        <p style="color:var(--ink-soft);">Danke, du hast alle 5 Bereiche bearbeitet. Deine Lehrkraft schaut sich das an und bespricht es mit dir.</p>
+        <p style="color:var(--ink-soft);">Vielen Dank, Sie haben alle 5 Bereiche bearbeitet. Ihre Lehrkraft sieht das Ergebnis.</p>
       </div>`;
       mount.innerHTML = html;
 
