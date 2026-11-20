@@ -3382,8 +3382,8 @@ function renderJetztDran() {
   const pruef = istPruefkonto(name);
   document.body.classList.toggle('pruefkonto', pruef);
   if (pruef) {   // Prüfkonto: kein „Jetzt dran“, sondern alles offen
-    el.innerHTML = '<section class="jetzt-karte" aria-label="Prüfkonto"><h2 class="jetzt-titel">Prüfkonto: alles ist offen</h2>'
-      + '<p class="jetzt-text">Tippe in der Lernpfad-Karte auf einen Schritt oder wähle unten Niveau und Lernfeld. Die Kinder sehen stattdessen nur ihre nächste Aufgabe.</p></section>';
+    el.innerHTML = '<section class="jetzt-karte" aria-label="Prüfkonto"><h2 class="jetzt-titel">Testkonto: alles ist freigeschaltet</h2>'
+      + '<p class="jetzt-text">Mit dem Testkonto ist alles freigeschaltet: Tippen Sie auf einen Schritt oder wählen Sie unten Niveau und Lernfeld. Die Studierenden sehen nur ihre nächste Aufgabe.</p></section>';
     const alles = document.getElementById('allesBereich'); if (alles) alles.classList.remove('hidden');
     return;
   }
