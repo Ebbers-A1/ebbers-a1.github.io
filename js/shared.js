@@ -27,7 +27,7 @@ function testnamenZeigen() {
 }
 function ohneTestkonten(namen, testBehalten) {   // testBehalten: TEst bleibt (Schüler-Auswahl, Lukas 31.10.)
   const zeigen = testnamenZeigen();
-  return (namen || []).filter(n => zeigen || (testBehalten && String(n).trim() === 'TEst') || !TESTNAME.test(String(n).trim()));
+  return (namen || []).filter(n => zeigen || (testBehalten && ['TEst', 'Test'].indexOf(String(n).trim()) >= 0) || !TESTNAME.test(String(n).trim()));
 }
 function fillStudentSelect(selectEl, valueMode) {
   // valueMode "slug": value = slug(Name) (Lehrkraft-Filter), sonst value = voller Name

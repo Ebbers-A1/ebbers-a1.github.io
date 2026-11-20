@@ -3305,7 +3305,7 @@ function setzeBildQuelle(viewId, id) {
 // ---------------- PRÜFKONTO (Lukas 01.11.2026) ----------------
 // „TEst“ ist Lukas' Überprüfungskonto: alles freigeschaltet (refreshProgress), jeder Schritt in der Lernpfad-Karte und
 // in der Liste antippbar, Liste aufgeklappt, keine roten „noch offen“-Markierungen. Für die Kinder ändert sich nichts.
-const PRUEFKONTEN = ['TEst'];
+const PRUEFKONTEN = ['TEst', 'Test'];
 function istPruefkonto(name) { return !window.PRUEFKONTO_AUS && PRUEFKONTEN.indexOf(String(name || '').trim()) >= 0; }   // PRUEFKONTO_AUS: nur die Test-Umgebung (TEst als normales Kind)
 document.getElementById('progressOverview').addEventListener('click', e => {
   const it = e.target.closest('.overview-item[data-id]');
@@ -3593,7 +3593,7 @@ async function zeigeArbeitsblatt(a, id) {
   zeichne();
 }
 
-const SPRACHEN = { ar: 'Arabisch', uk: 'Ukrainisch', ru: 'Russisch', tr: 'Türkisch', fa: 'Persisch', sq: 'Albanisch', bg: 'Bulgarisch', es: 'Spanisch', so: 'Somali', am: 'Amharisch', ti: 'Tigrinya', ku: 'Kurdisch (Sorani)' };
+const SPRACHEN = { en: 'English' };
 // Schreibweisen aus der Tabelle (Spalte C) -> Kürzel; Klammern werden ignoriert, kleine Tippfehler toleriert
 const SPRACH_ALIAS = { somalisch: 'so', somali: 'so', kurdisch: 'ku', sorani: 'ku', amharisch: 'am', tigrinisch: 'ti', tigrinya: 'ti', persisch: 'fa', farsi: 'fa', dari: 'fa', spansich: 'es', spanisch: 'es', türkisch: 'tr', tuerkisch: 'tr' };
 // Sprachen aus der Tabelle (Spalte C, kommen bei der Anmeldung mit). Mehrere mit Komma: „Ukrainisch, Russisch“
@@ -3609,7 +3609,7 @@ function merkeSprache(text) {
   if (codes.length) { try { localStorage.setItem('ebb_sprache', codes.join(',')); } catch (e) { /* egal */ } }
 }
 const UNGEPRUEFT = ['so', 'am', 'ku', 'ti', 'fa'];   // Übersetzungen ohne muttersprachliche Prüfung
-function meineSprachen() { try { return (localStorage.getItem('ebb_sprache') || '').split(',').filter(k => SPRACHEN[k]); } catch (e) { return []; } }
+function meineSprachen() { return ['en']; try { return (localStorage.getItem('ebb_sprache') || '').split(',').filter(k => SPRACHEN[k]); } catch (e) { return []; } }
 
 // Nomen wie im Duden: „Mantel, der“ — darunter Genus und Plural. Nur-Plural-Wörter kennzeichnen.
 const NUR_PLURAL = ['die Ferien'];

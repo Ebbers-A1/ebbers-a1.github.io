@@ -6,7 +6,7 @@
    Texte: data/korrektur-<lernfeld>.js (gen_korrektur.py). Fehlt eine Karte, gibt es trotzdem Aufgabe + Lösung (nie leer).
    ========================================================================== */
 const KORREKTUR_LERNFELDER = ['a2_lf5', 'a2_lf4', 'a2_lf3', 'a2_lf2', 'a2_lf1', 'a1_check', 'a2_grammatik', 'a2_lesen', 'a1_lf5', 'a1_lf2', 'a1_lf3', 'a1_lf4', 'a1_grammatik', 'b1_lf1', 'b1_lf2', 'b1_lf3', 'b1_lf4', 'b1_lf5', 'b1_grammatik', 'b1_wdh', 'b1_modelltest'];   // a1_check = Einstufungstest (13.11.2026)   // Lernfelder mit fertigen Karten (Phase 1: A2 LF5 Muster, dann LF4)
-const KK_SPRACHEN = { ar: 'Arabisch', uk: 'Ukrainisch', ru: 'Russisch', tr: 'Türkisch', fa: 'Persisch', sq: 'Albanisch', bg: 'Bulgarisch', es: 'Spanisch', so: 'Somali', am: 'Amharisch', ti: 'Tigrinya', ku: 'Kurdisch (Sorani)' };
+const KK_SPRACHEN = { en: 'English' };
 const KK_PERSONEN = ['ich', 'du', 'er/sie/es', 'wir', 'ihr', 'sie/Sie'];
 const KK_ARTIKEL = ['der', 'die', 'das', 'den', 'dem', 'des', 'ein', 'eine', 'einen', 'einem', 'einer', 'eines'];
 const KK_GENUS = { der: 'maskulin', die: 'feminin', das: 'neutral' };

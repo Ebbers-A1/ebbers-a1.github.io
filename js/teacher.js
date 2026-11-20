@@ -42,7 +42,7 @@ document.getElementById('pinSubmit').addEventListener('click', async () => {
     err.style.display = 'block';
   }
 });
-document.getElementById('pinInput').addEventListener('keydown', e => { if (e.key === 'Enter') document.getElementById('pinSubmit').click(); });
+document.getElementById('pinInput').addEventListener('keydown', e => { if (e.key === 'Enter') document.getElementById('pinSubmit').click(); }); try { const _p = sessionStorage.getItem('ebb_lk_tresor'); if (_p) { document.getElementById('pinInput').value = _p; document.getElementById('pinSubmit').click(); } } catch (e) { /* kein Speicher */ }
 document.getElementById('refreshBtn').addEventListener('click', () => aktualisiereAnsicht());
 
 function initDashStudentFilter() {

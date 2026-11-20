@@ -1,6 +1,6 @@
 // Ebbers A1 Kurs — Lehrkraft-Bereich „Kursplan“ (ENTWURF, 19.11.2026; Konzept: Konzept_Lehrkraftbereich.md).
 // Daten: window.LERNPLAN (data/lernplan.js) und window.LERNPLAN_LK (data/lk-lernplan.js, nur mit Lehrer-PIN entschlüsselbar).
-// Der Haken „durchgeführt“ steht im Entwurf nur im Browser (localStorage); später als lernplan:<id> in der Tabelle.
+// Der Haken „durchgeführt“ steht in der Tabelle (kursplan:erledigt) und zusätzlich im Browser (localStorage).
 (function () {
   'use strict';
   const PLAN = window.LERNPLAN || [], LK = window.LERNPLAN_LK || {};
@@ -73,7 +73,19 @@
     } else if (reiter === 'material') {
       inhalt = '<div class="card"><input class="kp-suche" placeholder="Material suchen, z. B. Dativ, Uhrzeit, Formular"><div class="kp-matliste">' + materialListe('') + '</div></div>';
     } else {
-      inhalt = `<div class="card"><p><strong>${reiter === 'kurs' ? 'Fortschritt der Studierenden' : 'Verwaltung'}</strong></p><p class="kp-leise">Dieser Reiter wird gebaut, sobald das neue Apps Script läuft (Ergebnisse und Studierendenliste kommen aus der Tabelle). Siehe Konzept_Lehrkraftbereich.md.</p></div>`;
+      inhalt = reiter === 'kurs'
+        ? `<div class="card"><h2>Fortschritt der Studierenden</h2><p>Die Ergebnisse der Tests und Übungen (Selbstkontrolle) sehen Sie in der Übersicht:
+           wer welche Einheit bearbeitet hat, wie viele Aufgaben richtig waren und welche die Person wiederholt.</p>
+           <p><a class="btn" href="lehrkraft.html">Übersicht öffnen</a></p>
+           <p class="kp-leise">Die Übersicht öffnet sich ohne neue PIN-Eingabe, solange dieser Tab offen ist. Sie dient nur der Information:
+           Freigeben oder bewerten müssen Sie nichts.</p></div>`
+        : `<div class="card"><h2>Verwaltung</h2>
+           <h3>Studierende eintragen</h3><p>In der Google-Tabelle „Ebbers A1 Kurs“, Blatt <strong>Schueler</strong>: Spalte A den Namen, Spalte B optional eine
+           vierstellige PIN. Die Namen erscheinen danach in der Auswahl auf der Startseite.</p>
+           <h3>Testkonto</h3><p>Mit dem Namen <strong>Test</strong> ist alles freigeschaltet. So können Sie jede Einheit vorab ansehen.</p>
+           <h3>Zugangscode oder PIN ändern</h3><p>Code (Script-Property <strong>Students</strong>) und PIN (<strong>Teacher</strong>) stehen im Apps Script.
+           Die Inhalte sind mit ihnen verschlüsselt: Nach einer Änderung muss die Seite neu hochgeladen werden.</p>
+           <h3>Kursplan</h3><p>Der Haken „durchgeführt“ wird in der Tabelle gespeichert und gilt auf allen Ihren Geräten.</p></div>`;
     }
     ziel.innerHTML = '<nav class="kp-nav">' + nav + '</nav>' + inhalt;
   }
@@ -99,10 +111,28 @@
     if (b.dataset.reiter) { reiter = b.dataset.reiter; zeichne(); }
     else if (b.dataset.einheit) { ev.preventDefault(); aktiv = b.dataset.einheit; reiter = 'kursplan'; zeichne(); window.scrollTo(0, 0); }
     else if (b.dataset.erledigt) { const id = b.dataset.erledigt; if (erledigt[id]) delete erledigt[id]; else { erledigt[id] = new Date().toISOString(); aktiv = null; }   // danach gleich die nächste gemeinsame Einheit zeigen
-      schreib('ebb_kursplan_erledigt', erledigt); zeichne(); window.scrollTo(0, 0); }
+      schreib('ebb_kursplan_erledigt', erledigt); zeichne(); window.scrollTo(0, 0); serverAendern(id, erledigt[id] || null); }
     else if (b.dataset.vollbild) zeigeMaterial(+b.dataset.vollbild, false);
     else if (b.dataset.druck) zeigeMaterial(+b.dataset.druck, true);
   });
   document.addEventListener('input', ev => { if (ev.target.classList.contains('kp-suche')) document.querySelector('.kp-matliste').innerHTML = materialListe(ev.target.value); });
+  // Tabelle (20.11.2026): Schlüssel kursplan:erledigt = { <einheit-id>: Zeitpunkt }. Gilt für alle Geräte der Lehrkraft.
+  // Lesen/Schreiben mit dem Lehrer-PIN (vom Tresor geprüft, sessionStorage). Ohne Verbindung bleibt es im Browser.
+  const SCHLUESSEL = 'kursplan:erledigt';
+  const mitServer = () => { try { const p = sessionStorage.getItem('ebb_lk_tresor'); if (p && typeof ZUGANGS_CODE !== 'undefined') { ZUGANGS_CODE = p; return !!window.storage; } } catch (e) { /* egal */ } return false; };
+  const serverLesen = async () => { try { return JSON.parse((await window.storage.get(SCHLUESSEL)).value || '{}') || {}; } catch (e) { return e && e.message === 'not_found' ? {} : null; } };
+  async function serverAendern(id, wert) {
+    if (!mitServer()) return;
+    const stand = await serverLesen(); if (stand === null) return;   // keine Verbindung: nur lokal
+    if (wert) stand[id] = wert; else delete stand[id];
+    try { await window.storage.set(SCHLUESSEL, JSON.stringify(stand)); } catch (e) { /* nur lokal */ }
+  }
   zeichne();
+  if (mitServer()) serverLesen().then(stand => {
+    if (!stand) return;
+    const lokalNeu = Object.keys(erledigt).filter(k => !stand[k]);   // vor der Anbindung nur im Browser gesetzt: mitnehmen
+    erledigt = Object.assign({}, stand); lokalNeu.forEach(k => { erledigt[k] = erledigt[k] || new Date().toISOString(); });
+    schreib('ebb_kursplan_erledigt', erledigt); zeichne();
+    if (lokalNeu.length) window.storage.set(SCHLUESSEL, JSON.stringify(erledigt)).catch(() => {});
+  });
 })();
