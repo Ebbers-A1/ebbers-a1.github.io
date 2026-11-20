@@ -1,0 +1,1143 @@
+  :root {
+    --bg: #FAF7F1;
+    --paper: #FFFFFF;
+    --ink: #26312E;
+    --ink-soft: #5B6864;
+    --line: #E3DFD3;
+    --teal: #2C6B62;
+    --teal-dark: #1E4B45;
+    --amber: #C98A2C;
+    --good: #3F7D50;
+    --good-bg: #E9F3E8;
+    --bad: #B23B33;
+    --bad-bg: #FBEAE8;
+    --warn-bg: #FBF2E2;
+    --warn: #9C6B15;
+    --radius: 10px;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.5; padding: 0 0 60px 0;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 18px; }
+  .hidden { display: none !important; }
+
+  header.top {
+    background: var(--teal-dark); color: #F4F1E8; padding: 26px 18px 20px; margin-bottom: 20px;
+  }
+  header.top .eyebrow { font-size: 14px; color: #B9CFC9; margin: 0 0 4px; }
+  header.top h1 { font-family: Georgia, serif; font-weight: 600; font-size: 24px; margin: 0 0 6px; line-height: 1.25; }
+  header.top .sub { font-size: 15px; color: #CBDAD6; margin: 0; }
+  header.top .backlink { color: #CBDAD6; font-size: 14px; cursor: pointer; text-decoration: underline; display: inline-block; margin-bottom: 10px; }
+
+  section.teil, .card, .panel {
+    background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 20px 20px 24px; margin-bottom: 22px;
+  }
+  section.teil h2 { font-family: Georgia, serif; font-size: 20px; margin: 0 0 4px; color: var(--teal-dark); }
+  section.teil p.hint { font-size: 14.5px; color: var(--ink-soft); margin: 0 0 18px; }
+
+  .item { margin-bottom: 26px; padding-bottom: 22px; border-bottom: 1px solid var(--line); }
+  .item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .item-label { font-size: 16.5px; font-weight: 600; margin-bottom: 10px; }
+  .locked-tag { display: inline-block; background: var(--warn-bg); color: var(--warn); font-size: 11.5px; font-weight: 600; padding: 2px 8px; border-radius: 20px; margin-left: 8px; vertical-align: middle; }
+  .item-num { color: var(--teal); margin-right: 6px; }
+
+  .img-options { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  @media (max-width: 480px) { .img-options { grid-template-columns: repeat(2, 1fr); } }
+  .img-opt {
+    border: 2px solid var(--line); border-radius: 8px; background: #FCFBF7;
+    padding: 8px 4px 6px; cursor: pointer; text-align: center; transition: border-color 0.15s, background 0.15s;
+  }
+  .img-opt img { width: 100%; height: auto; display: block; margin-bottom: 4px; }
+  .img-opt .letter { font-size: 13px; font-weight: 700; color: var(--ink-soft); }
+  @media (hover: hover) { .img-opt:hover { border-color: var(--teal); } }
+  .img-opt.selected { border-color: var(--teal); background: #fff; box-shadow: inset 0 0 0 1.5px var(--teal); }
+  .img-opt.correct { border-color: var(--good); background: var(--good-bg); }
+  .img-opt.incorrect { border-color: var(--bad); background: var(--bad-bg); }
+
+  .mc-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px; font-size: 16px; margin-bottom: 10px; }
+  .mc-blank { display: inline-block; min-width: 90px; border-bottom: 2px solid var(--ink-soft); text-align: center; font-weight: 700; }
+  .mc-options { display: flex; flex-wrap: wrap; gap: 8px; }
+  .mc-opt {
+    border: 2px solid var(--line); border-radius: 20px; background: #FCFBF7; padding: 6px 16px;
+    cursor: pointer; font-size: 15px; transition: border-color 0.15s, background 0.15s;
+  }
+  @media (hover: hover) { .mc-opt:hover { border-color: var(--teal); } }
+  .mc-opt.selected { border-color: var(--teal); background: #fff; box-shadow: inset 0 0 0 1.5px var(--teal); font-weight: 600; }
+  .mc-opt.correct { border-color: var(--good); background: var(--good-bg); color: var(--good); font-weight: 700; }
+  .mc-opt.incorrect { border-color: var(--bad); background: var(--bad-bg); color: var(--bad); }
+
+  .satz-start { font-weight: 700; margin-right: 6px; }
+  textarea.satz-input, input.gegenteil-input, input.text-input {
+    width: 100%; font-size: 16px; font-family: inherit; padding: 10px 12px;
+    border: 2px solid var(--line); border-radius: 8px; resize: vertical; background: #FCFBF7; color: var(--ink);
+  }
+  textarea.satz-input:focus, input.gegenteil-input:focus, input.text-input:focus { outline: none; border-color: var(--teal); }
+  .satz-row { display: flex; align-items: flex-start; gap: 8px; }
+  .satz-row textarea { flex: 1; }
+
+  .btn {
+    border: none; border-radius: 8px; padding: 11px 20px; font-size: 15.5px; font-weight: 600;
+    cursor: pointer; background: var(--teal); color: white; transition: background 0.15s;
+  }
+  .btn:hover { background: var(--teal-dark); }
+  .btn:disabled { background: #C7C2B4; cursor: default; }
+  .btn.secondary { background: transparent; color: var(--teal); border: 2px solid var(--teal); padding: 9px 18px; }
+  .btn.secondary:hover { background: #EAF2F0; }
+  .btn.small { padding: 6px 12px; font-size: 13.5px; }
+  .btn.danger { background: var(--bad); }
+  .btn.danger:hover { background: #8E2C26; }
+  .btn.ok { background: var(--good); }
+  .btn.ok:hover { background: #2E5E38; }
+  .btn.full { width: 100%; }
+
+  .check-btn-row { margin-top: 8px; display: flex; align-items: center; gap: 12px; }
+  .feedback { margin-top: 10px; padding: 10px 14px; border-radius: 8px; font-size: 14.5px; display: none; }
+  .feedback.show { display: block; }
+  .feedback.neutral { background: #F1EEE3; color: var(--ink-soft); }
+  .feedback.loading { background: #F1EEE3; color: var(--ink-soft); font-style: italic; }
+
+  .gegenteil-row { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+  .gegenteil-row .word { min-width: 110px; font-weight: 600; }
+  .gegenteil-row .arrow { color: var(--ink-soft); }
+  .gegenteil-row input { flex: 1; }
+  .gegenteil-row .status { width: 26px; text-align: center; font-size: 18px; }
+
+  .progress-bar { position: sticky; top: 0; z-index: 20; background: var(--bg); padding: 10px 18px 6px; border-bottom: 1px solid var(--line); }
+  .progress-track { max-width: 720px; margin: 0 auto; height: 8px; background: #EAE5D8; border-radius: 6px; overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--teal); width: 0%; transition: width 0.35s ease; }
+  .progress-label { max-width: 720px; margin: 6px auto 0; font-size: 13px; color: var(--ink-soft); display: flex; justify-content: space-between; }
+
+  /* Startseite */
+  .name-field { margin-bottom: 22px; }
+  .name-field label { display: block; font-size: 14.5px; color: var(--ink-soft); margin-bottom: 6px; font-weight: 600; }
+  .name-field input, .name-field select { width: 100%; font-size: 19px; padding: 14px 16px; border: 2px solid var(--line); border-radius: 10px; background: var(--paper); font-family: inherit; color: var(--ink); appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23808080'%3E%3Cpath d='M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; background-size: 18px; }
+  .name-field input:focus, .name-field select:focus { outline: none; border-color: var(--teal); }
+
+  .test-card {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 16px 18px; margin-bottom: 12px;
+  }
+  .test-card .info h3 { margin: 0 0 3px; font-size: 17px; font-family: Georgia, serif; }
+  .test-card .info p { margin: 0; font-size: 13.5px; color: var(--ink-soft); }
+  .test-card .repeat-badge {
+    display: inline-block; background: var(--warn-bg); color: var(--warn); font-size: 12.5px;
+    padding: 3px 9px; border-radius: 20px; margin-top: 6px; font-weight: 600;
+  }
+  .test-card button:disabled { opacity: 0.5; }
+
+  .footlink { text-align: center; margin-top: 26px; }
+  .footlink a { color: var(--ink-soft); font-size: 13.5px; text-decoration: underline; cursor: pointer; }
+
+  .summary {
+    background: var(--teal-dark); color: #F4F1E8; border-radius: var(--radius); padding: 30px 22px; text-align: center;
+  }
+  .summary .big-icon { font-size: 40px; margin-bottom: 6px; }
+  .summary h2 { font-family: Georgia, serif; font-size: 22px; margin: 0 0 10px; }
+  .summary p { font-size: 15.5px; margin: 0; color: #E3EDE9; }
+
+  /* Dashboard */
+  .pin-gate { max-width: 340px; margin: 60px auto; text-align: center; }
+  .pin-gate input { width: 100%; font-size: 22px; text-align: center; letter-spacing: 6px; padding: 14px; border: 2px solid var(--line); border-radius: 10px; margin: 16px 0; }
+
+  .submission {
+    background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 18px; margin-bottom: 14px;
+  }
+  .submission .head { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+  .submission .head h3 { margin: 0; font-family: Georgia, serif; font-size: 18px; }
+  .submission .head .meta { font-size: 12.5px; color: var(--ink-soft); }
+  .submission .autoscore { font-size: 14px; color: var(--ink-soft); margin-bottom: 10px; }
+  .submission .status-tag {
+    display: inline-block; font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 20px; margin-bottom: 10px;
+  }
+  .status-tag.offen { background: #EEE9DA; color: var(--ink-soft); }
+  .status-tag.wiederholen { background: var(--bad-bg); color: var(--bad); }
+  .status-tag.weiter { background: var(--good-bg); color: var(--good); }
+
+  .satzblock { border-left: 3px solid var(--line); padding: 6px 0 6px 12px; margin-bottom: 10px; }
+  .satzblock .vokabel { font-weight: 700; font-size: 14px; }
+  .satzblock .satztext { font-size: 15px; margin: 3px 0; }
+  .satzblock .urteil { font-size: 13px; font-weight: 700; }
+  .satzblock .urteil.good { color: var(--good); }
+  .satzblock .urteil.bad { color: var(--bad); }
+  .satzblock .urteil.tippfehler { color: var(--amber); background: var(--warn-bg); padding: 2px 8px; border-radius: 10px; margin-left: 6px; }
+  .antwortzeile { padding: 6px 10px; border-radius: 6px; margin-bottom: 4px; font-size: 13.5px; }
+  .antwort-correct { background: var(--good-bg); color: var(--good); }
+  .antwort-wrong { background: var(--bad-bg); color: var(--bad); }
+  .antwort-typo { background: var(--warn-bg); color: var(--warn); }
+  .lernbericht { background: #EAF2F0; border: 2px solid var(--teal); border-radius: 10px; padding: 14px 16px; margin-bottom: 14px; }
+  .lernbericht.ok { background: var(--good-bg); border-color: var(--good); color: var(--good); font-weight: 600; }
+  .lernbericht-titel { font-weight: 700; color: var(--teal-dark); margin-bottom: 8px; }
+  .lernbericht-zeile { margin-bottom: 8px; }
+  .lernbericht-zeile:last-child { margin-bottom: 0; }
+  .lernbericht-bereich { font-weight: 700; font-size: 14px; }
+  .lernbericht-empfehlung { font-size: 13.5px; color: var(--ink-soft); }
+
+  .manual-progress-panel { margin-bottom: 18px; }
+  #manualProgressBody { border: 2px solid var(--line); border-radius: 10px; padding: 16px; margin-top: 8px; background: #FCFBF7; }
+  #manualProgressBody label { display: block; font-size: 13px; font-weight: 600; color: var(--ink-soft); margin: 10px 0 4px; }
+  #manualProgressBody select { width: 100%; font-size: 15px; padding: 10px 12px; border: 2px solid var(--line); border-radius: 8px; background: var(--paper); }
+  #manualProgressResult { margin-top: 10px; font-size: 13.5px; }
+  #manualProgressResult.ok { color: var(--good); }
+  #manualProgressResult.err { color: var(--bad); }
+
+  .student-filter-row { margin-bottom: 16px; }
+  .student-filter-row label { display: block; font-size: 13.5px; font-weight: 600; color: var(--ink-soft); margin-bottom: 5px; }
+  .student-filter-row select { width: 100%; font-size: 17px; padding: 12px 14px; border: 2px solid var(--teal); border-radius: 10px; background: var(--paper); }
+
+  .item-browser-filters { display: flex; gap: 10px; margin-bottom: 18px; }
+  .ib-select-group { flex: 1; }
+  .ib-select-group label { display: block; font-size: 13px; font-weight: 600; color: var(--ink-soft); margin-bottom: 5px; }
+  .ib-select-group select { width: 100%; font-size: 16px; padding: 12px 14px; border: 2px solid var(--line); border-radius: 10px; background: var(--paper); }
+  .ib-item-card {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px;
+    background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; margin-bottom: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+  }
+  .ib-item-info h3 { font-family: Georgia, serif; font-size: 16px; margin: 0 0 2px; }
+  .ib-item-typ { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.02em; color: var(--teal); }
+  .ib-item-info p { margin: 2px 0 0; font-size: 13px; color: var(--ink-soft); }
+  .status-pill { display: inline-block; margin-top: 8px; padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: 700; }
+  .status-pill.gruen { background: var(--good-bg); color: var(--good); }
+  .status-pill.gelb { background: var(--warn-bg); color: var(--warn); }
+  .status-pill.rot { background: var(--bad-bg); color: var(--bad); }
+  .status-pill.blau { background: #E8F0F7; color: #2C567F; }
+  .fortschritt-geladen-hinweis { background: #E8F0F7; border: 1px solid #2C567F; border-radius: 10px; padding: 12px 14px; margin-top: 14px; font-size: 14px; color: #2C567F; }
+
+  /* Grammatikblock */
+  .grammatik-erklaerung { display: flex; gap: 12px; background: #FBF7EE; border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin-bottom: 10px; margin-top: 22px; }
+  .grammatik-nr { flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; background: var(--teal); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px; }
+  .grammatik-inhalt h3 { margin: 0 0 6px; font-family: Georgia, serif; font-size: 17px; color: var(--teal-dark); }
+  .grammatik-text { font-size: 14.5px; line-height: 1.6; color: var(--ink); }
+  .grammatik-uebung { background: var(--paper); border: 2px solid var(--teal); border-radius: 12px; padding: 16px; margin-bottom: 8px; }
+  .grammatik-uebung-titel { font-weight: 700; color: var(--teal-dark); margin-bottom: 4px; }
+  .grammatik-item { margin-bottom: 14px; }
+  .grammatik-frage { font-size: 15px; margin-bottom: 6px; }
+  .satzblock .kifeedback { font-size: 13.5px; color: var(--ink-soft); }
+  .satzblock .verbesserung { font-size: 13.5px; color: var(--amber); font-style: italic; }
+
+  .status-controls { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+  textarea.comment-input { width: 100%; margin-top: 8px; font-size: 14px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 6px; }
+
+  .empty-state { text-align: center; padding: 40px 20px; color: var(--ink-soft); }
+  .refresh-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+  .refresh-row .status-text { font-size: 12.5px; color: var(--ink-soft); }
+
+  /* Übungen (Activities) */
+  .section-label { font-size: 14px; font-weight: 700; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.03em; margin: 26px 0 10px; }
+  .activity-card {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 16px 18px; margin-bottom: 12px;
+  }
+  .activity-card .info h3 { margin: 0 0 3px; font-size: 17px; font-family: Georgia, serif; }
+  .activity-card .info p { margin: 0; font-size: 13.5px; color: var(--ink-soft); }
+
+  .domino-board {
+    background: var(--teal-dark); border-radius: var(--radius); padding: 20px 18px; margin-bottom: 22px;
+    overflow-x: auto;
+  }
+  .domino-track { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; }
+  .domino-link { color: #B9CFC9; font-size: 14px; padding: 0 2px; }
+
+  .domino-piece {
+    display: inline-flex; align-items: stretch; border-radius: 8px; overflow: hidden;
+    border: 2px solid var(--line); background: var(--paper); cursor: pointer; transition: all 0.15s;
+    flex-shrink: 0;
+  }
+  .domino-piece .half { padding: 9px 12px; font-size: 14px; font-weight: 700; white-space: nowrap; }
+  .domino-piece .divider { width: 2px; background: var(--line); }
+  .domino-piece:hover { border-color: var(--teal); }
+  .domino-piece.correct { border-color: var(--good); }
+  .domino-piece.correct .half { background: var(--good-bg); color: var(--good); }
+  .domino-piece.incorrect { border-color: var(--bad); }
+  .domino-piece.incorrect .half { background: var(--bad-bg); color: var(--bad); }
+  .domino-piece.placed { border-color: transparent; }
+  .domino-piece.placed .half { background: #F4F1E8; color: var(--teal-dark); }
+  .domino-piece.placed.start .half { background: var(--amber); color: white; }
+  .domino-piece.placed .divider { background: rgba(0,0,0,0.15); }
+
+  .domino-pool { display: flex; flex-wrap: wrap; gap: 8px; }
+  .domino-done { text-align: center; padding: 30px 20px; }
+  .domino-done .big-icon { font-size: 44px; margin-bottom: 8px; }
+
+  .steiger-row { margin-bottom: 20px; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
+  .steiger-row:last-child { border-bottom: none; }
+  .steiger-row .pos { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+  .steiger-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+  @media (max-width: 480px) { .steiger-grid { grid-template-columns: 1fr; } }
+  .steiger-field label { display: block; font-size: 12px; color: var(--ink-soft); margin-bottom: 3px; }
+  .steiger-field input { width: 100%; font-size: 15px; padding: 8px 10px; border: 2px solid var(--line); border-radius: 6px; }
+
+  .quartett-collected-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+  .quartett-collected-badge {
+    background: var(--good-bg); color: var(--good); font-size: 13px; font-weight: 700;
+    padding: 5px 12px; border-radius: 20px;
+  }
+  .quartett-pool { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  @media (max-width: 480px) { .quartett-pool { grid-template-columns: repeat(3, 1fr); } }
+  .quartett-card {
+    border: 2px solid var(--line); border-radius: 8px; background: var(--paper); padding: 12px 6px;
+    text-align: center; font-size: 13.5px; font-weight: 600; cursor: pointer; transition: all 0.15s;
+    min-height: 46px; display: flex; align-items: center; justify-content: center;
+  }
+  .quartett-card:hover { border-color: var(--teal); }
+  .quartett-card.selected { border-color: var(--teal); background: #EAF2F0; box-shadow: 0 0 0 2px rgba(44,107,98,0.15); }
+  .quartett-card.incorrect { border-color: var(--bad); background: var(--bad-bg); color: var(--bad); }
+
+  .wortarten-pool { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; min-height: 44px; }
+  .wortarten-chip {
+    border: 2px solid var(--line); border-radius: 20px; padding: 8px 16px; font-size: 15px; font-weight: 600;
+    cursor: pointer; background: var(--paper); transition: all 0.15s;
+  }
+  .wortarten-chip.selected { border-color: var(--teal); background: #EAF2F0; }
+  .wortarten-buckets { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  @media (max-width: 480px) { .wortarten-buckets { grid-template-columns: 1fr 1fr; } }
+  .wortarten-bucket {
+    border: 2px dashed var(--line); border-radius: 10px; padding: 12px; min-height: 90px; cursor: pointer;
+  }
+  .wortarten-bucket h4 { margin: 0 0 8px; font-size: 14px; }
+  .wortarten-bucket.nomen h4 { color: #B23B33; }
+  .wortarten-bucket.adjektiv h4 { color: #3F7D50; }
+  .wortarten-bucket.verb h4 { color: #2C5C9E; }
+  .wortarten-bucket.artikel h4 { color: #6B6659; }
+  .wortarten-bucket .placed { display: flex; flex-wrap: wrap; gap: 5px; }
+  .wortarten-bucket .placed span { font-size: 13px; background: #F1EEE3; border-radius: 12px; padding: 3px 9px; }
+  .wortarten-bucket .placed span.wrong { background: var(--bad-bg); color: var(--bad); text-decoration: line-through; }
+
+  /* Brettspiel */
+  .spielbrett {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 4px;
+    background: var(--teal-dark);
+    border-radius: var(--radius);
+    padding: 10px;
+    margin-bottom: 18px;
+  }
+  .spielfeld-zelle {
+    aspect-ratio: 1;
+    background: #F4F1E8;
+    border-radius: 6px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    position: relative;
+    font-size: 11px; font-weight: 700; color: var(--ink-soft);
+  }
+  .spielfeld-zelle.start { background: var(--amber); color: white; }
+  .spielfeld-zelle.ziel { background: var(--good); color: white; }
+  .spielfeld-zelle.besucht { background: #DCE8E4; }
+  .spielfeld-zelle .zellnummer { font-size: 10px; opacity: 0.7; }
+  .spielfigur {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    font-size: 22px; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.3));
+    transition: all 0.4s ease;
+  }
+  .wuerfel-anzeige {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 52px; height: 52px; background: white; border-radius: 10px;
+    font-size: 26px; font-weight: 800; color: var(--teal-dark);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15); margin: 0 auto 14px;
+  }
+  @keyframes wuerfelRoll { 0%,100% { transform: rotate(0deg); } 25% { transform: rotate(-12deg); } 75% { transform: rotate(12deg); } }
+  .wuerfel-anzeige.rolling { animation: wuerfelRoll 0.15s ease-in-out infinite; }
+
+  /* Fortschrittsübersicht */
+  .overview-wrap { overflow-x: auto; margin-bottom: 22px; -webkit-overflow-scrolling: touch; }
+  .overview-hint { font-size: 12.5px; color: var(--ink-soft); margin-bottom: 8px; }
+  .overview-grid { display: flex; gap: 10px; min-width: min-content; }
+  .overview-col { min-width: 128px; flex-shrink: 0; }
+  .overview-col-title { font-family: Georgia, serif; font-weight: 700; font-size: 14px; color: var(--teal-dark); margin-bottom: 8px; text-align: center; padding-bottom: 6px; border-bottom: 2px solid var(--line); }
+  .overview-item {
+    display: flex; align-items: center; gap: 6px; padding: 7px 8px; border-radius: 8px; margin-bottom: 5px;
+    font-size: 12px; background: #FCFBF7; border: 1px solid var(--line);
+  }
+  .overview-item .icon { font-size: 13px; flex-shrink: 0; }
+  .overview-item.done { background: var(--good-bg); border-color: var(--good); color: var(--good); }
+  .overview-item.wiederholen { background: var(--warn-bg); border-color: var(--amber); color: var(--warn); font-weight: 700; }
+  .overview-item.unerledigt { background: var(--bad-bg); border-color: var(--bad); color: var(--bad); font-weight: 700; }
+  .overview-item.wirdgeprueft { background: #E8F0F7; border-color: #3B6EA5; color: #2C567F; font-weight: 700; }
+  .overview-item-title { display: block; }
+  .overview-item-typ { display: block; font-size: 10px; font-weight: 400; opacity: 0.75; text-transform: uppercase; letter-spacing: 0.02em; margin-top: 1px; }
+
+  /* Eingangstest */
+  .bereich-tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 20px; }
+  .bereich-tab { padding: 6px 12px; border-radius: 20px; font-size: 12.5px; font-weight: 700; background: #EEE9DA; color: var(--ink-soft); }
+  .bereich-tab.aktuell { background: var(--teal); color: white; }
+  .bereich-tab.bestanden { background: var(--good-bg); color: var(--good); }
+  .et-frage { margin-bottom: 22px; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
+  .et-frage:last-child { border-bottom: none; }
+  .et-prompt { font-size: 16px; font-weight: 600; margin-bottom: 10px; }
+  .et-ergebnis-box { text-align: center; padding: 30px 20px; border-radius: var(--radius); margin-bottom: 20px; }
+  .et-ergebnis-box.bestanden { background: var(--good-bg); }
+  .et-ergebnis-box.nicht-bestanden { background: var(--bad-bg); }
+  .et-ergebnis-box .prozent { font-family: Georgia, serif; font-size: 40px; font-weight: 700; }
+  .overview-item.gesperrt { color: var(--ink-soft); opacity: 0.6; }
+  .overview-empty { color: var(--ink-soft); font-size: 13.5px; padding: 10px 0; }
+
+  /* Quiz-Sammelspiel */
+  .quiz-karte {
+    background: var(--paper); border: 2px solid var(--line); border-radius: 14px;
+    padding: 28px 22px; margin-bottom: 18px; text-align: center; min-height: 140px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+  }
+  .quiz-karte .quiz-frage { font-family: Georgia, serif; font-size: 19px; line-height: 1.4; }
+  .quiz-karte .quiz-antwort { margin-top: 16px; padding-top: 16px; border-top: 1px dashed var(--line); font-size: 16px; color: var(--teal-dark); font-weight: 600; }
+  .quiz-stapel-info { display: flex; justify-content: space-between; font-size: 13.5px; color: var(--ink-soft); margin-bottom: 10px; }
+  .quiz-buttons { display: flex; gap: 10px; margin-top: 4px; }
+  .quiz-buttons .btn { flex: 1; }
+
+  /* Konjugations-Karten (mobile-tauglich statt breiter Tabelle) */
+  .konj-verb-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 18px; }
+  @media (max-width: 480px) { .konj-verb-grid { grid-template-columns: 1fr; } }
+  .konj-verb-card { border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; background: #FCFBF7; }
+  .konj-verb-title { font-weight: 700; font-size: 14px; margin-bottom: 8px; color: var(--teal-dark); }
+  .konj-person-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+  .konj-person-label { width: 70px; flex-shrink: 0; font-size: 12.5px; color: var(--ink-soft); }
+  .konj-person-row input { flex: 1; font-size: 14px; padding: 6px 8px; border: 2px solid var(--line); border-radius: 6px; min-width: 0; }
+  .konj-stamm { font-size: 14px; font-weight: 700; color: var(--ink); white-space: nowrap; align-self: stretch; display: flex; align-items: center; background: #F2EFE6; border: 2px solid var(--line); border-right: none; border-radius: 6px 0 0 6px; padding: 0 2px 0 8px; }
+  .konj-stamm + .konj-endung-input { margin-left: -8px; flex: 0 0 64px !important; border-radius: 0 6px 6px 0 !important; }
+  .konj-endung-input { flex: 0 1 70px !important; text-align: left; }
+
+  /* ---- Generischer Abschlusstest (A1) + Emoji-Bilder + Spiele Memory/Wörter bauen ---- */
+  .gen-item { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 12px; }
+  .gen-item.gen-auswahl { display: block; }
+  .gen-frage { font-size: 17px; font-weight: 600; min-width: 60px; }
+  .gen-emoji { font-size: 40px; line-height: 1; }
+  .gen-input { flex: 1 1 140px; max-width: 280px; }
+  .gen-select { flex: 0 1 220px; }
+  .gen-clock { flex: 0 0 auto; }
+  .img-opt img { max-height: 150px; object-fit: contain; }
+  .teil4-bild { height: 80px; max-width: 110px; object-fit: contain; flex: 0 0 auto; }
+  .gen-bild { height: 110px; max-width: 190px; object-fit: contain; flex: 0 0 auto; }
+  .memory-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  @media (max-width: 480px) { .memory-grid { grid-template-columns: repeat(3, 1fr); } }
+  .memory-card { border: 2px solid var(--line); border-radius: 8px; background: #FCFBF7; min-height: 92px; display: flex; align-items: center; justify-content: center; text-align: center; font-size: 22px; font-weight: 700; cursor: pointer; padding: 6px; user-select: none; }
+  .memory-card.verdeckt { background: var(--teal); border-color: var(--teal-dark); color: #F4F1E8; }
+  .memory-card.offen { border-color: var(--amber); background: var(--warn-bg); }
+  .memory-card.gefunden { border-color: var(--good); background: var(--good-bg); color: var(--good); cursor: default; }
+  .wb-vorlage { font-size: 34px; font-weight: 700; text-align: center; margin: 10px 0 4px; letter-spacing: 1px; }
+  .wb-antwort { display: flex; justify-content: center; gap: 6px; min-height: 56px; margin: 10px 0; flex-wrap: wrap; }
+  .wb-slot { min-width: 44px; height: 54px; border-bottom: 3px solid var(--ink-soft); display: flex; align-items: center; justify-content: center; padding: 0 2px; }
+  .wb-tiles { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+  .wb-tile { min-width: 50px; height: 56px; border: 2px solid var(--teal); border-radius: 8px; background: #FCFBF7; font-size: 26px; font-weight: 700; cursor: pointer; color: var(--teal-dark); padding: 2px 4px; }
+  .wb-tile.benutzt { opacity: .25; cursor: default; }
+
+  /* ---- Bewertung (Lehrkraft-Ansicht) ---- */
+  .bw-summe .bw-ergebnis { font-size: 16px; margin: 10px 0 6px; padding: 10px 12px; background: #F2EFE6; border-radius: 8px; }
+  .bw-teil { border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; margin: 10px 0; background: #fff; }
+  .bw-teil h4 { margin: 0 0 8px; font-size: 15px; }
+  .bw-teilzahl { font-weight: 400; font-size: 13px; color: var(--ink-soft); margin-left: 6px; }
+  .bw-teilzahl.hat-fehler { color: var(--bad); }
+  .bw-zeile { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+  .bw-text { flex: 1 1 auto; min-width: 0; }
+  .bw-toggle { display: flex; gap: 4px; flex: 0 0 auto; }
+  .bw-btn { width: 34px; height: 30px; border: 1.5px solid var(--line); background: #fff; border-radius: 6px; cursor: pointer; font-size: 15px; padding: 0; }
+  .bw-btn.an-ok { background: var(--good-bg); border-color: var(--good); color: var(--good); font-weight: 700; }
+  .bw-btn.an-bad { background: var(--bad-bg); border-color: var(--bad); color: var(--bad); font-weight: 700; }
+  .geaendert { color: #8A6D1D; }
+  .bw-wdh { display: flex; gap: 6px; align-items: center; margin-top: 8px; font-size: 13.5px; color: var(--ink-soft); cursor: pointer; font-weight: 400; }
+  .bw-label { display: block; margin-top: 12px; font-weight: 600; font-size: 14px; }
+  .bw-pflicht { color: var(--bad); font-weight: 400; }
+  .bw-hinweis { margin: 10px 0; padding: 9px 12px; border-radius: 8px; background: #F2EFE6; font-size: 14px; }
+  .bw-hinweis.gut { background: var(--good-bg); }
+  .bw-hinweis.schlecht { background: var(--bad-bg); }
+  .bw-modusbox { margin: 8px 0; font-size: 14px; }
+  .bw-leer { color: var(--ink-soft); font-size: 13.5px; }
+
+  /* ---- Ergebnis-Ansicht (Schüler) und gesperrte Teile ---- */
+  .erg-punkte { text-align: center; padding: 14px; background: #F2EFE6; border-radius: 10px; margin-bottom: 12px; }
+  .erg-note { font-family: Georgia, serif; font-size: 34px; font-weight: 700; color: var(--teal-dark); }
+  .erg-box { padding: 10px 12px; border-radius: 8px; margin: 10px 0; font-size: 15px; }
+  .erg-box.gut { background: var(--good-bg); }
+  .erg-box.schlecht { background: var(--bad-bg); }
+  .erg-kommentar { padding: 10px 12px; border-left: 4px solid var(--teal); background: #FCFBF7; margin: 12px 0; font-size: 15px; }
+  .erg-h { font-family: Georgia, serif; margin: 18px 0 6px; }
+  .erg-teil { font-weight: 700; margin-top: 12px; color: var(--teal-dark); }
+  .erg-fehler { border-bottom: 1px solid var(--line); padding: 8px 0; font-size: 15px; }
+  .erg-deine { color: var(--bad); }
+  .erg-richtig { color: var(--good); font-weight: 600; }
+  .abschluss-gesperrt { opacity: .55; pointer-events: none; background: #EEF3F0; }
+  .nur-ansicht .bw-btn, .nur-ansicht .bw-wdh, .nur-ansicht .comment-input { pointer-events: none; opacity: .55; }
+  .bw-fb { display: flex; gap: 6px; flex-wrap: wrap; margin: -2px 0 8px 22px; }
+  .bw-fb input { flex: 1 1 240px; padding: 6px 8px; border: 1.5px solid var(--line); border-radius: 6px; font-size: 13.5px; background: #fff; }
+  .bw-fb-zu { margin: -4px 0 6px 22px; }
+  .bw-fb-link { background: none; border: none; color: var(--teal-dark); text-decoration: underline; cursor: pointer; font-size: 12.5px; padding: 0; }
+  .erg-hinweis { color: var(--ink); font-style: italic; }
+
+  /* ---- Verbtabellen (B1) ---- */
+  .vt-karte { border: 1px solid var(--line); border-radius: 8px; padding: 6px 8px 8px; margin: 10px 0; background: #fff; }
+  .vt { width: 100%; border-collapse: collapse; }
+  .vt caption { text-align: left; font-weight: 700; padding: 2px 0 6px; color: var(--teal-dark); }
+  .vt th { text-align: left; width: 96px; font-weight: 600; font-size: 13px; padding: 3px 6px; background: #F2EFE6; }
+  .vt td { padding: 2px 4px; } .vt td input { width: 100%; }
+  .vt-vorgabe { color: var(--ink-soft); font-style: italic; padding-left: 8px !important; }
+  .gen-bild-gross-wrap { margin: 8px 0 12px; text-align: center; }
+  .gen-bild-gross { max-width: 100%; height: auto; border: 1px solid var(--line); border-radius: 6px; background: #fff; }
+  .gen-lang { flex: 1 1 100%; min-height: 150px; width: 100%; resize: vertical; font-family: inherit; }
+  .gen-item { flex-wrap: wrap; }
+  .gen-item .gen-lang { width: 100% !important; max-width: none !important; }
+  .gen-frage { white-space: pre-line; }
+  .lesetext-box { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; margin: 4px 0 18px; line-height: 1.65; font-size: 15.5px; }
+  /* ---- Lesespurgeschichte ---- */
+  .lesespur-fortschritt { font-size: 13px; color: var(--ink-soft); margin: 4px 0 8px; }
+  .lesespur-station { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; margin-bottom: 14px; }
+  .lesespur-station.lesespur-sackgasse { background: var(--bad-bg); border-color: var(--bad); }
+  .lesespur-text { line-height: 1.65; font-size: 15.5px; white-space: pre-line; }
+  .lesespur-frage { font-weight: 600; margin: 0 0 10px; }
+  .lesespur-choices { display: flex; flex-direction: column; gap: 10px; }
+  .lesespur-choice { text-align: left; padding: 14px 16px; border: 1.5px solid var(--teal); border-radius: 10px; background: #fff; font-size: 15px; cursor: pointer; color: var(--ink); }
+  .lesespur-choice:hover { background: #F1F7F5; }
+  .lesespur-karte-wrap { text-align: center; margin: 0 0 12px; }
+  .lesespur-karte { max-width: 100%; max-height: 60vh; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
+  .lesespur-choices-ziffer { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+  .lesespur-choice-ziffer { flex: 0 0 auto; min-width: 56px; text-align: center; font-size: 20px; font-weight: 700; padding: 10px 0; }
+
+  /* Anzeige insgesamt etwas breiter (mehr Platz z. B. für die Lesespur-Karte) */
+  .wrap { max-width: 880px; }
+  .progress-track, .progress-label { max-width: 880px; }
+  .bw-fb .bw-fb-preset { flex: 0 1 190px; padding: 6px 6px; border: 1.5px solid var(--line); border-radius: 6px; font-size: 13.5px; background: #fff; }
+  /* Bewertungskarten in der Lehrkraft-Ansicht: eingeklappt, per Klick aufklappen (weniger unübersichtlich bei mehreren offenen Abgaben) */
+  .submission .head { cursor: pointer; }
+  .submission .status-tag { cursor: pointer; }
+  .submission .bw-chevron { display: inline-block; margin-left: 6px; font-size: 12px; color: var(--ink-soft); transition: transform .15s; }
+  .submission.collapsed .bw-chevron { transform: rotate(-90deg); }
+  .submission .bw-details { margin-top: 10px; }
+  .submission.collapsed .bw-details { display: none; }
+
+/* ---- Wiederholung: Hinweis oben im Test, offene Aufgaben gelb, fertige grau ---- */
+.repeat-hinweis-oben { display: block; background: #FFF3BF; color: #5C4300; border: 1px solid #E0A800; border-radius: 10px; padding: 12px 14px; margin-bottom: 18px; font-size: 15px; line-height: 1.45; }
+.wdh-offen { background: #FFF8DC; box-shadow: inset 5px 0 0 #E0A800; border-radius: 8px; padding-left: 12px; }
+input.wdh-offen, select.wdh-offen, textarea.wdh-offen { box-shadow: 0 0 0 2px #E0A800; padding-left: revert; }
+.wdh-fertig { opacity: .55; }
+/* Ergebnis-Seite: die zwei Schritte bei "Wiederholen nötig" */
+.erg-schritte { background: #FFF3BF; color: #5C4300; border: 1px solid #E0A800; }
+.erg-schritte > div { margin-top: 8px; }
+.erg-schritt-nr { display: inline-block; width: 22px; height: 22px; line-height: 22px; text-align: center; border-radius: 50%; background: #E0A800; color: #fff; font-weight: 700; font-size: 13px; margin-right: 6px; }
+/* Ergebnis-Seite: Bilder zu Bild-Aufgaben (gewähltes/richtiges Bild, Aufgabenbild) */
+.erg-bild { display: block; max-width: 110px; max-height: 96px; margin: 6px 0; padding: 4px; background: #fff; border: 1px solid var(--line); border-radius: 8px; }
+/* Kopfzeile: Niveau + Lernfeld über dem Titel */
+.eyebrow-lernfeld { font-weight: 700; opacity: 1; letter-spacing: .02em; text-transform: none; font-size: 14.5px; }
+/* Klassen-Code-Abfrage (liegt über der ganzen Seite, bis der Code stimmt) */
+#codeGate, #pinGate { position: fixed; inset: 0; z-index: 1000; background: var(--bg, #FAF6EE); display: flex; align-items: flex-start; justify-content: center; padding: 60px 16px; overflow: auto; }
+.code-gate-box { width: 100%; max-width: 380px; background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 24px; }
+.code-gate-box h2 { font-family: Georgia, serif; margin: 4px 0 8px; }
+.code-gate-box input { width: 100%; box-sizing: border-box; font-size: 18px; padding: 12px; border: 1px solid var(--line); border-radius: 8px; margin-top: 10px; }
+.code-gate-fehler { color: var(--bad); min-height: 1.4em; margin: 10px 0 0; font-size: 14.5px; }
+/* ---- Korrektur-Ablauf (Paket A): Status-Farben ---- */
+.status-tag.zettel_offen { background: var(--warn-bg); color: var(--warn); }
+.status-tag.wiederholung_frei { background: var(--bad-bg); color: var(--bad); }
+.status-tag.endgueltig { background: var(--good-bg); color: var(--good); }
+.overview-item.zettel { background: var(--warn-bg); border-color: var(--amber); color: var(--warn); font-weight: 700; }
+
+/* ---- Vier-Seiten-Puzzle (Zeitformen) ---- */
+#actBody { --vsp-gr: min(calc((100vw - 100px) / 4), 132px); } /* 4 Karten + Abstände passen auch auf schmale Handys */
+.vsp-stufen { display: flex; gap: 8px; margin: 6px 0 10px; }
+.vsp-feld { display: grid; gap: 2px; justify-content: center; margin: 10px 0; overflow-x: auto; }
+.vsp-zelle { width: var(--vsp-gr); height: var(--vsp-gr); }
+.vsp-leer { border: 1.5px dashed var(--line); border-radius: 6px; background: #fff; cursor: pointer; }
+.vsp-karte { position: relative; width: 100%; height: 100%; box-sizing: border-box; background: #fff; border: 1.5px solid var(--ink-soft); border-radius: 6px; cursor: pointer; font-size: clamp(7.5px, 2.1vw, 11px); line-height: 1.15; color: var(--ink); }
+.vsp-zeitform { background: #F3EFE4; font-weight: 700; }
+.vsp-joker { background: #FFF3BF; font-weight: 700; }
+.vsp-fest { cursor: default; border-color: #9a9483; background-color: #ECE8DD; }
+.vsp-gewaehlt { outline: 3px solid #E0A800; outline-offset: -1px; }
+.vsp-karte span { position: absolute; display: flex; align-items: center; justify-content: center; text-align: center; padding: 2px; box-sizing: border-box; }
+.vsp-o { top: 0; left: 18%; right: 18%; height: 30%; }
+.vsp-u { bottom: 0; left: 18%; right: 18%; height: 30%; }
+.vsp-l { left: 0; top: 14%; bottom: 14%; width: 22%; writing-mode: vertical-rl; transform: rotate(180deg); }
+.vsp-r { right: 0; top: 14%; bottom: 14%; width: 22%; writing-mode: vertical-rl; }
+.vsp-falsch { color: var(--bad) !important; background: var(--bad-bg); border-radius: 4px; font-weight: 700; box-shadow: inset 0 0 0 2px var(--bad); }
+.vsp-knoepfe { display: flex; gap: 8px; flex-wrap: wrap; }
+.vsp-vorrat { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; padding: 8px; background: #F3EFE4; border-radius: 10px; }
+.vsp-vorratplatz { width: var(--vsp-gr); height: var(--vsp-gr); }
+
+/* ---- Lernfeld-Tests: Bilder aus dem Original ---- */
+.lt-bild { max-width: 110px; max-height: 80px; display: block; margin: 0 auto; }
+.lt-bild-gross-wrap { text-align: center; margin: 8px 0 12px; }
+.lt-bild-gross { max-width: 100%; height: auto; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
+.lt-beispiel { font-style: italic; color: var(--ink-soft); margin: 4px 0 12px; }
+.lt-beispiel-zeile { align-items: center; }
+.lt-gesicht { width: 44px; height: auto; vertical-align: middle; margin-right: 8px; border-radius: 6px; }
+
+/* ---- Lehrkraft-Ansicht: Bilder zu den Antworten (Paket C2) ---- */
+.bw-bild { max-width: 64px; max-height: 52px; vertical-align: middle; margin-right: 6px; border: 1px solid var(--line); border-radius: 4px; background: #fff; }
+.bw-bilder { display: inline-flex; align-items: center; gap: 4px; margin-right: 6px; }
+.bw-pfeil { font-size: 11px; color: var(--good); }
+.bw-bild-gross-wrap { margin: 6px 0 8px; }
+.bw-bild-gross { max-width: 100%; max-height: 360px; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
+
+/* ---- A2 LT5: Geschäfte und Produkte verbinden (Bilder) ---- */
+.vb-zeile { border: 1px solid var(--line); border-radius: 10px; padding: 8px; margin-bottom: 10px; background: #fff; }
+.vb-beispiel { background: #F3EFE4; }
+.vb-geschaeft { display: flex; align-items: center; gap: 8px; font-weight: 700; margin-bottom: 6px; }
+.vb-geschaeft em { font-weight: 400; color: var(--ink-soft); }
+.vb-gbild { width: 72px; height: auto; border-radius: 6px; }
+.vb-produkte { display: flex; flex-wrap: wrap; gap: 6px; }
+.vb-produkt { display: inline-flex; padding: 3px; border: 2px solid var(--line); border-radius: 8px; cursor: pointer; background: #fff; }
+.vb-produkt.vb-an { border-color: var(--teal); background: #E6F2EE; box-shadow: 0 0 0 2px var(--teal); }
+.vb-beispiel .vb-produkt { cursor: default; } .vb-beispiel .vb-aus { opacity: .35; }
+.vb-pbild { width: 54px; height: 54px; object-fit: contain; }
+.abschluss-gesperrt .vb-produkt { cursor: default; opacity: .6; }
+
+/* ---- Schritt-Tests: große Bilder mit Nummern (Teil 2) und Bild neben dem Wort (Teil 4) ---- */
+.teil-grossbild { text-align: center; margin: 14px 0 10px; }
+.teil-grossbild h3 { font-family: Georgia, serif; margin: 0 0 6px; }
+.teil-grossbild img { max-width: 100%; height: auto; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
+.teil4-bild-neben { width: 56px; height: 56px; object-fit: contain; vertical-align: middle; margin-right: 6px; }
+/* großes Bild bleibt beim Scrollen durch seine Fragen oben sichtbar (begrenzte Höhe, damit die Fragen Platz haben) */
+.teil-grossbild { position: sticky; top: 0; z-index: 5; background: var(--bg, #FAF7F1); padding: 4px 0; }
+.teil-grossbild img { max-height: 34vh; width: auto; }
+/* „Beschrifte das Bild“ in Teil 4 */
+.teil4-zwischen { margin: 16px 0 8px; padding-top: 10px; border-top: 1px dashed var(--line); }
+/* Teil 4 auf schmalen Bildschirmen: Eingabefeld nie zu schmal (Bild + langes Wort) -> notfalls in die nächste Zeile */
+.gegenteil-row { flex-wrap: wrap; }
+.gegenteil-row input { min-width: 150px; }
+.teil4-bild-neben { flex: 0 0 auto; }
+/* ---- Feld-Prüfung 05.10.2026 (scenarios_felder.py): auf dem Handy war manches Feld zu schmal ---- */
+/* Teil 3: langer Satzanfang drückte das Schreibfeld auf 0–5 Zeichen -> Feld hat Mindestbreite, sonst neue Zeile */
+.satz-row { flex-wrap: wrap; }
+.satz-row textarea { flex: 1 1 230px; min-width: 230px; }
+/* Lesetexte: Auswahlfelder mit langen Sätzen ragten über den Rand */
+.gen-select { min-width: 0; max-width: 100%; }
+/* Memory: Karten mit langen Wörtern/Bildern waren breiter als der Bildschirm */
+.memory-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+@media (max-width: 480px) { .memory-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } .memory-card { font-size: 16px; } }
+.memory-card { min-width: 0; overflow-wrap: anywhere; hyphens: auto; }
+.memory-card img { max-width: 100%; height: auto; }
+/* sehr lange Wörter (z. B. Zahlwort „neunhundertvierundzwanzigtausend…“ im A1-Lernfeld-Test 4) dürfen umbrechen */
+.gen-frage, .gen-item, .item-label, .gegenteil-row .word, .satz-start { overflow-wrap: anywhere; }
+
+/* A1.5 Schuldomino (07.10.2026): Steine mit Bild und Satz */
+.domino-piece .half { white-space: normal; max-width: 170px; }
+.domino-piece .half-bild { padding: 4px 6px; display: flex; align-items: center; justify-content: center; }
+.domino-piece .half-bild img { width: 88px; height: 66px; object-fit: contain; display: block; }
+
+/* Paket 2 (28.10.2026): Auswahllisten in Grammatik-Blöcken so groß wie die Eingabefelder (auf dem Handy gut zu treffen) */
+select.gb-auswahl {
+  width: 100%; font-size: 16px; font-family: inherit; padding: 10px 12px; min-height: 44px;
+  border: 2px solid var(--line); border-radius: 8px; background: #FCFBF7; color: var(--ink);
+}
+select.gb-auswahl:focus { outline: none; border-color: var(--teal); }
+
+
+/* Paket 3 (28.10.2026): Wortkarten und Themen-Ampel der B1-Wiederholung */
+.wo-feld { margin-top: 6px; }
+.wo-satz { min-height: 48px; border: 2px dashed var(--line); border-radius: 8px; padding: 6px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; background: #FCFBF7; }
+.wo-leer { color: var(--ink-soft); font-size: 14px; }
+.wo-karten { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; min-height: 40px; }
+.wo-karte { font: inherit; font-size: 16px; padding: 8px 12px; border: 2px solid var(--teal); border-radius: 8px; background: #fff; color: var(--ink); cursor: pointer; }
+.wo-satz .wo-karte { background: var(--teal); color: #fff; }
+.wdh-kopf { font-family: Georgia, serif; margin: 0 0 8px; }
+.wdh-kopf2 { font-family: Georgia, serif; margin: 22px 0 8px; }
+.wdh-hinweis { color: var(--ink-soft); font-size: 14px; }
+.wdh-liste { display: grid; gap: 4px; }
+.wdh-zeile { display: grid; grid-template-columns: 18px 1fr auto; gap: 8px; align-items: center; padding: 4px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+.wdh-zahl { color: var(--ink-soft); font-size: 13px; text-align: right; }
+.wdh-ampel { display: inline-block; width: 14px; height: 14px; border-radius: 50%; border: 1px solid rgba(0,0,0,.25); flex: none; }
+.wdh-gruen { background: #3E9B5F; } .wdh-gelb { background: #E8B931; } .wdh-rot { background: #C8413B; } .wdh-grau { background: #CFCBC2; }
+.wdh-thema { border: 2px solid var(--line); border-radius: 10px; padding: 10px 12px; margin: 10px 0; background: #fff; }
+.wdh-rand-rot { border-color: #C8413B; } .wdh-rand-gelb { border-color: #E8B931; }
+.wdh-thema-kopf { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.wdh-seite { color: var(--ink-soft); font-size: 13px; }
+.wdh-merk { margin: 6px 0; font-size: 15px; }
+.wdh-fehler { font-size: 14px; border-top: 1px solid var(--line); padding: 6px 0; }
+.wdh-falsch { color: #C8413B; } .wdh-richtig { color: #2D7A4A; font-weight: 600; }
+.wdh-gut { font-weight: 600; color: #2D7A4A; }
+/* Lehrkraft: Themen je Kind und Klassenübersicht */
+.wdh-panel { border: 2px solid var(--teal); border-radius: 10px; padding: 10px 12px; margin-bottom: 14px; background: #fff; }
+.wdh-panel h3 { margin: 0 0 6px; font-family: Georgia, serif; }
+.wdh-tab { width: 100%; border-collapse: collapse; font-size: 14px; }
+.wdh-tab td, .wdh-tab th { padding: 4px 6px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: middle; }
+.wdh-tab select { font: inherit; font-size: 13px; padding: 2px 4px; }
+.wdh-matrix-wrap { overflow-x: auto; max-width: 100%; }
+.wdh-matrix { border-collapse: collapse; font-size: 12px; }
+.wdh-matrix th, .wdh-matrix td { border: 1px solid var(--line); padding: 2px 4px; text-align: center; white-space: nowrap; }
+.wdh-matrix th.wdh-kind { text-align: left; position: sticky; left: 0; background: #fff; }
+.wdh-matrix td.wdh-zelle { width: 22px; height: 20px; }
+.wdh-matrix td.wdh-zelle.wdh-gruen, .wdh-matrix td.wdh-zelle.wdh-gelb, .wdh-matrix td.wdh-zelle.wdh-rot, .wdh-matrix td.wdh-zelle.wdh-grau { border-radius: 0; }
+.grammatik-item:has(.wo-feld) > .grammatik-frage { display: none; }   /* die Karten zeigen die Wörter schon */
+
+/* Paket 4 (28.10.2026): Modelltest Fit B1 */
+.wortzaehler { font-size: 13px; color: var(--ink-soft); text-align: right; margin-top: 4px; }
+.bw-check { display: flex; gap: 8px; align-items: flex-start; font-size: 14px; padding: 3px 0; }
+.bw-checkliste { margin: 8px 0; }
+/* Modelltest: Lesetext bleibt beim Antworten oben sichtbar (in sich scrollbar); Anzeigen auf breiten Bildschirmen zweispaltig */
+.lesetext-box.lesetext-angeheftet { position: sticky; top: 0; z-index: 2; max-height: 42vh; overflow-y: auto; box-shadow: 0 6px 10px -8px rgba(0,0,0,.35); }
+@media (min-width: 820px) { .lesetext-box.lesetext-spalten { column-count: 2; column-gap: 24px; max-height: 55vh; } }
+#abschlussBody select { font-size: 16px; font-family: inherit; padding: 8px 10px; min-height: 44px; border: 2px solid var(--line); border-radius: 8px; background: #FCFBF7; color: var(--ink); max-width: 100%; }
+.overview-col-aktuell .overview-col-title { color: #fff; background: var(--teal); border-radius: 6px; border-bottom-color: var(--teal); }   /* aktuelles Lernfeld */
+.overview-hint { position: sticky; left: 0; }   /* Hinweis bleibt sichtbar, auch wenn die Karte zum aktuellen Lernfeld springt */
+#abmeldenKnopf { margin-top: 8px; }   /* PIN je Kind: unter der Namensauswahl */
+
+/* ---------- „Jetzt dran“ + Arbeitsblatt im Heft (31.10.2026) ---------- */
+.jetzt-karte { background: var(--paper); border: 2px solid var(--teal); border-radius: var(--radius); padding: 18px; margin: 14px 0 10px; }
+.jetzt-karte.jetzt-leer { border-color: var(--line); }
+.jetzt-wo { font-size: 14px; color: var(--ink-soft); margin: 0 0 10px; }
+.jetzt-zustand { color: var(--teal-dark); }
+.jetzt-titel { font-family: Georgia, serif; font-size: 22px; line-height: 1.25; margin: 0 0 4px; text-wrap: balance; }
+.jetzt-text { margin: 0 0 12px; color: var(--ink); }
+.jetzt-los { width: 100%; }
+.jetzt-extra { border: 1px solid var(--line); border-radius: var(--radius); padding: 10px 12px; margin-bottom: 10px; font-size: 15px; }
+.jetzt-extra-kopf { font-weight: 700; margin-bottom: 4px; }
+.jetzt-extra-zeile { padding: 4px 0; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.jetzt-alles { background: none; border: none; color: var(--teal-dark); text-decoration: underline; text-underline-offset: 3px; font: inherit; font-size: 15px; min-height: 44px; padding: 0 0 6px; cursor: pointer; }
+.blatt-punkte { display: flex; gap: 6px; margin-bottom: 6px; }
+.blatt-punkte span { flex: 1; height: 6px; border-radius: 3px; background: var(--line); }
+.blatt-punkte span.vorbei { background: var(--teal); opacity: .5; }
+.blatt-punkte span.an { background: var(--teal); }
+.blatt-seitenkopf { font-size: 14px; color: var(--ink-soft); }
+.blatt-h2 { font-family: Georgia, serif; margin: 4px 0 12px; }
+.blatt-h3 { margin: 12px 0 6px; font-size: 16px; }
+.blatt-auftrag { display: grid; grid-template-columns: 22px 1fr; gap: 10px; align-items: start; background: var(--good-bg); border: 1px solid rgba(31, 92, 84, .18); padding: 12px 14px; border-radius: 12px; margin: 12px 0; color: var(--teal-dark); }
+.blatt-auftrag p { margin: 0; color: var(--ink); line-height: 1.5; }
+.blatt-auftrag.wo-vokabelheft { background: var(--warn-bg); border-color: rgba(160, 110, 20, .22); color: var(--warn); }
+.blatt-auftrag.wo-lesen { background: transparent; border-color: transparent; padding: 4px 0; color: var(--ink-soft); }
+.blatt-wo { font-weight: 700; }
+.sym { display: block; margin-top: 1px; }
+.blatt-text p { line-height: 1.6; font-size: 17px; margin: 0 0 10px; }
+.blatt-blasen { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 12px; }
+.blatt-blase { border: 1.5px solid var(--ink-soft); border-radius: 18px; padding: 6px 12px; background: var(--paper); }
+.blatt-merk { background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius); padding: 10px 12px; margin: 12px 0; }
+.blatt-merk-kopf { font-weight: 700; margin-bottom: 4px; }
+.blatt-merk p { margin: 4px 0; }
+.blatt-tab-wrap { overflow-x: auto; margin: 8px 0; }
+.blatt-tab { border-collapse: collapse; font-size: 15px; min-width: 100%; }
+.blatt-tab th, .blatt-tab td { border: 1px solid var(--line); padding: 5px 7px; text-align: left; vertical-align: top; }
+.blatt-tab thead th { background: var(--bg); }
+.blatt-saetze { padding-left: 26px; line-height: 1.8; font-size: 17px; }
+.blatt-hinweis { color: var(--ink-soft); font-size: 15px; }
+.blatt-check { line-height: 1.8; }
+.blatt-bilder { display: grid; grid-template-columns: repeat(auto-fill, minmax(84px, 1fr)); gap: 6px; }
+.blatt-bild { display: flex; flex-direction: column; align-items: center; gap: 4px; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); padding: 6px; font: inherit; font-size: 13px; cursor: pointer; }
+.blatt-bild img { width: 70px; height: 60px; object-fit: contain; }
+.blatt-wortliste { columns: 2 220px; column-gap: 18px; }
+.blatt-wort { break-inside: avoid; padding: 4px 0; border-bottom: 1px solid var(--line); }
+.vok { background: none; border: none; padding: 0; font: inherit; color: inherit; text-decoration: underline dotted var(--teal); text-underline-offset: 3px; cursor: pointer; text-align: left; }
+.blatt-bild.vok { text-decoration: none; }
+.blatt-nav { display: flex; justify-content: space-between; gap: 10px; margin-top: 18px; align-items: center; flex-wrap: wrap; }
+.blatt-status { color: var(--good); font-weight: 700; margin: 0; }
+#vokBox { position: absolute; z-index: 50; }   /* direkt unter dem Wort (01.11.2026), siehe platziereVokabel */
+.vok-karte { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 18px; position: relative; box-shadow: 0 10px 28px rgba(0,0,0,.18); }
+.vok-karte::before { content: ''; position: absolute; top: -8px; left: calc(var(--pfeil, 40px) - 8px); width: 14px; height: 14px; background: var(--paper);
+  border-left: 1px solid var(--line); border-top: 1px solid var(--line); transform: rotate(45deg); }
+.vok-zu { position: absolute; right: 4px; top: 4px; width: 44px; height: 44px; background: none; border: none; font-size: 28px; line-height: 1; cursor: pointer; color: var(--ink-soft); }
+.vok-wort { font-family: Georgia, serif; font-size: 22px; font-weight: 700; padding-right: 26px; }
+.vok-pl { color: var(--ink-soft); font-size: 14px; }
+.vok-zeile { margin-top: 10px; }
+.vok-lab { display: block; font-size: 14px; font-weight: 700; color: var(--ink-soft); }
+#vokSprache { font: inherit; font-size: 16px; font-weight: 400; min-height: 44px; padding: 0 8px; margin-left: 6px; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); color: var(--ink); }
+.vok-fehlt { color: var(--ink-soft); font-style: italic; }
+.blatt-figur { margin: 10px 0; }
+.blatt-figur img { width: 100%; height: auto; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
+.blatt-figur figcaption { font-size: 13px; color: var(--ink-soft); }
+.blatt-bildreihe { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 8px; margin: 10px 0; }
+.blatt-bildreihe figure { margin: 0; border: 1px solid var(--line); border-radius: 8px; background: #fff; padding: 4px; text-align: center; }
+.blatt-bildreihe img { width: 100%; height: 80px; object-fit: contain; }
+.blatt-bildreihe figcaption { font-weight: 700; font-size: 18px; color: var(--teal-dark); }
+.blatt-dialog { margin: 10px 0; font-size: 17px; line-height: 1.55; }
+.blatt-dialog-zeile { display: grid; grid-template-columns: 70px 1fr; gap: 8px; padding: 2px 0; }
+.blatt-wer { font-weight: 700; }
+.blatt-btext { display: grid; grid-template-columns: 34px 1fr; gap: 8px; align-items: start; border-bottom: 1px solid var(--line); padding: 6px 0; }
+.blatt-btext p { margin: 0; line-height: 1.55; }
+.blatt-buchstabe { width: 30px; height: 30px; border-radius: 50%; background: var(--teal); color: #fff; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+.blatt-figur img { cursor: zoom-in; }
+#bildGross { position: fixed; inset: 0; background: rgba(0,0,0,.85); z-index: 60; overflow: auto; }
+#bildGross img { width: max(100%, 1000px); max-width: none; display: block; background: #fff; }
+#bildGross .vok-zu { position: fixed; right: 10px; top: 6px; color: #fff; font-size: 34px; z-index: 61; }
+.done-wartet { background: var(--warn-bg); border: 1px solid rgba(160, 110, 20, .22); padding: 12px 14px; border-radius: 12px; text-align: left; }
+.jetzt-post { display: flex; gap: 10px; align-items: center; background: var(--warn-bg); border-radius: 12px; padding: 10px 14px; margin: 10px 0 0; font-size: 15px; color: var(--warn); }
+.jetzt-post span { color: var(--ink); }
+.done-unterwegs { color: var(--ink-soft); font-size: 14px; }
+.done-angekommen { color: var(--good); font-weight: 700; }
+.vok-ueb { display: block; font-size: 20px; }
+.vok-ueb2 { display: block; color: var(--ink-soft); font-size: 15px; }
+.vok-ueb ~ .vok-fehlt { display: block; font-size: 12px; margin-top: 4px; }
+
+/* Tippflächen mindestens 44 px (Impeccable-Audit 31.10.2026; Kinderhände, Handys) */
+.btn { min-height: 44px; }
+.mc-opt { min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+#abmeldenKnopf { min-height: 44px; font-size: 15px; }
+#toDashboard { display: inline-block; padding: 13px 0; }
+.blatt-nav .btn { min-width: 112px; }
+/* Vollständiger Durchgang 01.11.2026 (alle 163 Schritte bei 375 px gemessen) */
+.mc-opt, .wo-karte { min-width: 44px; }
+.mc-opt { min-height: 46px; }
+.btn:disabled { color: #3F3B33; }                                                   /* grau gesperrt: Schrift trotzdem lesbar */
+.domino-piece.placed.start .half, .spielfeld-zelle.start { background: #9A6416; }    /* Weiß auf Orange: 2,9:1 -> 5:1 */
+#view-test input:not([type=checkbox]):not([type=radio]), #view-test textarea, #view-test select,
+#view-activity input:not([type=checkbox]):not([type=radio]), #view-activity textarea, #view-activity select { font-size: max(16px, 1em) !important; }   /* iPhone zoomt sonst beim Antippen; !important wegen fester Werte am Feld (A2.3 Lernfeld-Test) */
+
+/* Vokabel-Karte wie im Duden (01.11.2026): „Mantel, der“ · maskulin · Plural; Sprachen untereinander */
+.vok-gram { color: var(--ink-soft); font-size: 15px; margin-top: 2px; }
+.vok-ueb { display: block; font-size: 18px; margin-top: 2px; }
+.vok-sprache { font-size: 14px; font-weight: 700; color: var(--ink-soft); }
+.vok-hinweis { display: block; font-size: 13px; margin-top: 4px; }
+.vok-wahl { display: flex; align-items: center; gap: 8px; margin-top: 10px; font-size: 14px; color: var(--ink-soft); }
+
+/* Prüfkonto TEst (01.11.2026): alles neutral und antippbar statt rot/gesperrt */
+body.pruefkonto .overview-item { cursor: pointer; }
+body.pruefkonto .overview-item.unerledigt, body.pruefkonto .overview-item.gesperrt { background: var(--paper); border-color: var(--line); color: var(--ink); font-weight: 400; opacity: 1; }
+body.pruefkonto .status-pill.rot { background: var(--bg); color: var(--ink-soft); }
+
+/* Form des Buchs (01.11.2026): Person mit Sprechblase, Spitze zeigt auf die Person */
+.blatt-figur.klein img { max-width: 360px; }
+.blatt-sprecher { display: grid; grid-template-columns: 64px 1fr; gap: 14px; align-items: start; margin: 12px 0; }
+.blatt-sprecher.rechts { grid-template-columns: 1fr 64px; }
+.blatt-sprecher.rechts img { order: 2; }
+.blatt-sprecher img { width: 64px; height: auto; margin-top: 6px; cursor: default; }
+.blatt-sprechblase { position: relative; background: var(--paper); border: 1.5px solid var(--ink-soft); border-radius: 18px; padding: 12px 14px; line-height: 1.55; font-size: 16px; }
+.blatt-sprechblase::before { content: ''; position: absolute; top: 20px; left: -9px; width: 14px; height: 14px; background: var(--paper);
+  border-left: 1.5px solid var(--ink-soft); border-bottom: 1.5px solid var(--ink-soft); transform: rotate(45deg); }
+.blatt-sprecher.rechts .blatt-sprechblase::before { left: auto; right: -9px; transform: rotate(-135deg); }
+
+/* Schöner (Lukas 01.11.2026): Bilder ohne Rahmen, Szene neben dem Text, Vokabelliste einspaltig mit Hinweisen */
+.blatt-figur img { border: none; border-radius: 0; background: transparent; }
+.blatt-figur figcaption { margin-top: 4px; }
+.blatt-text.mit-bild::after { content: ''; display: block; clear: both; }
+.blatt-textbild { float: right; width: 44%; max-width: 300px; margin: 4px 0 8px 14px; cursor: zoom-in; }
+.blatt-tab.leer td { height: 34px; }
+.wl { border-top: 1px solid var(--line); }
+.wl-zeile { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 4px 14px; padding: 8px 0; border-bottom: 1px solid var(--line); }
+.wl-de { font-weight: 700; font-size: 16px; line-height: 1.35; }
+.wl-de .vok { font-weight: 700; }
+.wl-zeile.form .wl-de { font-weight: 700; }
+.wl-ueb { font-weight: 700; font-size: 16px; }
+.wl-hinweis { font-style: italic; color: var(--ink-soft); font-size: 14px; line-height: 1.4; }
+.wl-sprache { font: inherit; font-size: 16px; min-height: 44px; padding: 0 8px; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); }
+.wl-zeile { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 4px 12px; }   /* links Deutsch, rechts der Rest — auch am Handy nebeneinander */
+.wl-de, .wl-rechts { overflow-wrap: anywhere; hyphens: auto; }
+.wl-de { font-size: 15px; } .wl-ueb { font-size: 15px; } .wl-hinweis { font-size: 13.5px; }
+
+/* Beispielsatz (01.11.2026): fett = ins Vokabelheft; eigene Sprache jetzt dünn und kursiv wie die anderen Hinweise */
+.wl-bsp { font-weight: 700; font-size: 15px; line-height: 1.35; margin-bottom: 2px; }
+.wl-ueb { font-weight: 400; font-style: italic; color: var(--ink-soft); font-size: 14px; }
+
+/* Einstiegsbild vor dem Test (02.11.2026) */
+.einstieg { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px; margin: 0 0 14px; }
+.einstieg-kopf { font-family: Georgia, serif; font-size: 18px; margin: 0 0 8px; }
+.einstieg .blatt-figur img { cursor: zoom-in; }
+.gb-heft-liste { margin: 6px 0 0; }
+/* Handybreite (02.11.2026, B1.3 Präteritum): Verbtabellen mit 3–4 Spalten passen ohne Querwischen */
+@media (max-width: 480px) {
+  .blatt-tab { font-size: 13.5px; }
+  .blatt-tab th, .blatt-tab td { padding: 4px 4px; }
+  .blatt-merk { padding: 10px 8px; }
+}
+/* 03.11.2026 (A2.5): lange Sprechernamen („Kassiererin“) laufen nicht mehr in den Text; Bildwörter mit „…“ brechen sauber um */
+.blatt-dialog { display: grid; grid-template-columns: max-content 1fr; column-gap: 10px; }
+.blatt-dialog-zeile { display: contents; }
+.blatt-dialog-zeile > * { padding: 2px 0; }
+.blatt-bild span, .blatt-bild .vok { overflow-wrap: anywhere; hyphens: auto; text-align: center; }
+
+/* Grammatik-Erklärungen (Lukas 08.11.2026): eigener Kasten, zusätzlich zum Buch; Grammatik-Karte beim Antippen */
+.blatt-erkl { background: #F1F7F6; border: 1px solid var(--line); border-left: 5px solid var(--teal); border-radius: var(--radius); padding: 10px 12px; margin: 14px 0; }
+.blatt-erkl-kopf { font-weight: 700; color: var(--teal-dark); margin-bottom: 4px; }
+.blatt-erkl p { margin: 5px 0; }
+.blatt-erkl-bsp { margin-top: 8px; padding: 6px 10px; background: #fff; border-radius: 8px; }
+.blatt-erkl-bsp p { margin: 3px 0; font-weight: 600; }
+.blatt-erkl-sp { margin-top: 10px; padding-top: 8px; border-top: 1px dashed var(--line); }
+.blatt-erkl-sp-kopf { font-weight: 700; font-size: 14px; color: var(--ink-soft); }
+.blatt-erkl-sp .vok-fehlt { font-size: 12px; }
+.gram-karte .vok-gram { text-transform: uppercase; letter-spacing: .04em; font-size: 12px; color: var(--teal-dark); }
+.gram-karte .gram-bsp { display: block; margin: 2px 0; }
+.gram-karte .blatt-erkl-sp { border-top: none; padding-top: 0; margin-top: 4px; }
+.gram-karte .blatt-erkl-sp p { margin: 3px 0; }
+
+/* Nochmal ansehen (11.11.2026): nur lesen, nichts abgeben */
+.ansehen-hinweis { background: #e8f0fb; color: var(--ink); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; margin: 0 0 16px; line-height: 1.45; }
+.nur-ansehen #submitBtn, .nur-ansehen #saveLaterBtn, .nur-ansehen #grammatikAbgabeBereich, .nur-ansehen #progressRestoredNotice { display: none !important; }
+.nur-ansehen .img-opt, .nur-ansehen .mc-opt, .nur-ansehen .wo-karte { cursor: default; }
+
+/* Korrektur-Karten (Phase 1, 12.11.2026) */
+.kk-intro { margin: 4px 0 14px; line-height: 1.45; }
+.kk-karte { border: 1px solid var(--line); border-radius: 12px; padding: 14px; margin: 0 0 16px; background: #fff; line-height: 1.45; }
+.kk-aufgabe { margin-bottom: 10px; }
+.kk-frage, .kk-satz { margin: 0 0 8px; font-size: 16px; }
+.kk-satz { font-size: 17px; }
+.kk-luecke { background: #FFF4D6; border-radius: 6px; padding: 1px 6px; }
+.kk-luecke s { color: var(--bad); }
+.kk-bilder { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.kk-wahl { margin: 0; text-align: center; border: 2px solid var(--line); border-radius: 8px; padding: 4px; font-size: 12px; }
+.kk-wahl img { width: 100%; max-width: 90px; height: auto; }
+.kk-wahl.kk-ok { border-color: var(--good); background: var(--good-bg); }
+.kk-wahl.kk-falsch { border-color: var(--bad); background: var(--bad-bg); }
+.kk-bild { max-width: 100%; height: auto; }
+.kk-bild-gross.kk-bild-breit { max-width: 100%; }
+.kk-bild-gross { display: block; max-width: 220px; width: 100%; height: auto; margin: 0 auto 8px; }
+.kk-gv { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.kk-gv > img { width: 110px; height: auto; }
+.kk-gv .kk-wahl { width: 76px; }
+.kk-pfeil { font-size: 22px; }
+.kk-svg { display: block; width: 100%; max-width: 420px; height: auto; margin: 6px auto; color: var(--ink); }
+.kk-verb { border-collapse: collapse; width: 100%; max-width: 360px; font-size: 16px; }
+.kk-verb th, .kk-verb td { text-align: left; padding: 4px 8px; border-bottom: 1px solid var(--line); }
+.kk-verb th { width: 30%; font-weight: 400; color: var(--ink-soft); }
+.kk-verb tr.kk-verb-falsch td:nth-child(2) { font-weight: 700; color: var(--good); }
+.kk-verb tr.kk-verb-falsch td:nth-child(3) { color: var(--bad); }
+.kk-zeile { margin: 4px 0; }
+.kk-lab { font-weight: 700; }
+.kk-deine { color: var(--bad); }
+.kk-richtig { color: var(--good); }
+.kk-form { background: #FFF4D6; border-radius: 8px; padding: 8px 10px; margin: 8px 0; }
+.kk-form p { margin: 2px 0; }
+.kk-wort { border-left: 0; background: #F2EFE6; border-radius: 8px; padding: 8px 10px; margin: 8px 0; }
+.kk-gram { color: var(--ink-soft); font-size: 13px; }
+.kk-erkl { margin-top: 2px; }
+.kk-bsp { font-style: italic; margin-top: 2px; }
+.kk-sp { margin-top: 2px; }
+.kk-sp-name { font-weight: 700; font-size: 13px; color: var(--teal-dark); }
+.kk-warum { margin: 10px 0 6px; }
+.kk-warum-kopf { font-weight: 700; font-size: 16px; color: var(--teal-dark); margin-bottom: 2px; }
+.kk-warum p { margin: 3px 0; }
+.kk-sp-block { margin-top: 8px; padding-top: 6px; border-top: 1px dashed var(--line); }
+.kk-sp-block p { margin: 2px 0; }
+.kk-sp-fehlt { color: var(--ink-soft); font-size: 13px; }
+.kk-regel { margin: 8px 0; background: #EAF2F0; border-radius: 8px; padding: 8px 10px; }
+.kk-regel summary { cursor: pointer; font-weight: 700; min-height: 32px; }
+.kk-regel p { margin: 4px 0; }
+.kk-regel-bsp p { font-style: italic; }
+.kk-lehrkraft { margin: 8px 0; background: #EEF3FB; border-radius: 8px; padding: 8px 10px; }
+.kk-heft { margin-top: 10px; padding: 10px; border: 2px solid var(--teal); border-radius: 8px; }
+.bw-karten-box { margin-top: 10px; }
+.bw-karten-kopf { margin: 6px 0 10px; font-size: 14px; }
+.bw-karten-kopf select { font-size: 14px; }
+
+/* Bildquelle ARASAAC unter Tests/Spielen (12.11.2026) */
+.bild-quelle { font-size: 12px; color: var(--ink-soft); margin: 18px 0 6px; line-height: 1.4; }
+.vok-melden { display: block; margin-top: 8px; font-size: 13px; }
+
+/* Einstufungstest-Karten (13.11.2026): Erklärungsuhr, Auswahl-Optionen */
+.kk-uhr { max-width: 320px; width: 100%; display: block; margin: 8px auto 0; color: var(--ink); }
+.kk-uhr-leg { text-align: center; font-size: 13px; margin: 2px 0 6px; }
+.kk-optionen { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0; }
+.kk-opt { border: 2px solid var(--line); border-radius: 8px; padding: 4px 10px; }
+.kk-opt.kk-ok { border-color: var(--good); background: var(--good-bg); font-weight: 600; }
+.kk-opt.kk-falsch { border-color: var(--bad); text-decoration: line-through; }
+
+.kk-anleitung { margin: 2px 0 6px; color: var(--ink-soft); font-size: 14px; }
+
+/* Bilder antippen = groß ansehen (Merkliste 14.11.2026, Punkt 2) */
+.blatt-bildreihe img, .einstieg img, .kk-aufgabe img, .kk-karte img, .erg-fehler img, .lt-bild-gross-wrap img, #teil2items img, #teil3items img, #teil4items img, #abschlussBody img, .bw-bilder img, .bw-bild-gross-wrap img { cursor: zoom-in; }
+.img-opt img, .mc-opt img, .quartett-card img, .memory-card img { cursor: pointer; }
+#bildGross img { width: auto; min-width: 100%; max-width: none; image-rendering: auto; }
+/* Bildquelle aufklappbar (Merkliste 14.11.2026, Punkt 3) */
+details.bild-quelle summary { cursor: pointer; color: var(--ink-soft); font-size: 12px; }
+details.bild-quelle:not([open]) { margin: 10px 0 4px; }
+/* Meldeknopf bei Übersetzungen (Merkliste 14.11.2026, Punkt 8) */
+.ueb-melden-zeile { margin: 6px 0 2px; font-size: 13px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+/* Bezugsmaterial bei der Schreibaufgabe (Merkliste 14.11.2026, Punkt 4) */
+.blatt-bezug { border: 2px solid var(--line); border-radius: 10px; padding: 6px 10px 2px; margin: 12px 0; background: #fff; }
+.blatt-bezug > summary { cursor: pointer; font-weight: 700; color: var(--teal-dark, #1f5c54); padding: 4px 0; }
+.blatt-bezug { padding: 4px 4px 2px; overflow-x: auto; }
+.blatt-bezug table { font-size: 13px; }
+.blatt-bezug table td, .blatt-bezug table th { padding: 4px 5px; }
+/* Fachwörter in Korrektur-Karten (Merkliste 14.11.2026, Punkt 10) */
+.kk-begriff { background: none; border: 0; padding: 0; font: inherit; color: inherit; text-decoration: underline dotted; text-underline-offset: 3px; cursor: help; }
+.kk-begriff-box { border-left: 4px solid var(--teal, #2c6b62); background: #f3f8f6; padding: 6px 10px; margin: 4px 0 8px; border-radius: 6px; font-size: 14px; }
+.kk-begriff-box p { margin: 4px 0; }
+
+/* Gesamt-Prüfung 5.2 (Lukas 14.11.2026): EIN Auftrag-Kasten für jede Aufgabenstellung (Test, Lernfeld-Test, Grammatik-Block, Spiel),
+   gleich wie im Arbeitsblatt: grüner Kasten mit Stift. Punkte klein und grau darunter, Beispiele im eigenen grauen Kasten. */
+.auftrag, section.teil p.hint {
+  background: var(--good-bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231E4B45' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 20h4L19 9l-4-4L4 16v4z'/%3E%3Cpath d='M14 6l4 4'/%3E%3C/svg%3E") no-repeat 14px 13px / 20px 20px;
+  border: 1px solid rgba(31, 92, 84, .18); border-radius: 12px; padding: 11px 14px 11px 44px; margin: 8px 0 14px;
+  color: var(--ink); font-size: 16px; line-height: 1.5; }
+section.teil p.hint:empty, .auftrag:empty { display: none; }
+.auftrag-titel { font-weight: 700; color: var(--teal-dark); }
+.auftrag-punkte { font-size: 13.5px; color: var(--ink-soft); margin: -6px 0 12px; }
+.beispiel-box { background: #F2EFE6; border-left: 4px solid #CFC8B6; border-radius: 8px; padding: 8px 12px; margin: 0 0 14px; font-size: 15px; color: var(--ink); }
+.beispiel-box .beispiel-wort { font-weight: 700; color: var(--ink-soft); margin-right: 6px; }
+h2.auftrag-nr { font-family: -apple-system, "Segoe UI", sans-serif !important; font-size: 15px !important; letter-spacing: .02em; text-transform: uppercase; color: var(--teal) !important; margin-bottom: 0 !important; }
+/* Teil 2: Nummer und Satz bleiben in einer Zeile; Teil 4 am Handy: Feld unter dem Wort statt allein umbrechendem „→“ */
+.mc-row { flex-wrap: nowrap; }
+.mc-row > span:last-child { flex: 1 1 0; min-width: 0; }
+@media (max-width: 600px) {
+  .gegenteil-row .arrow { display: none; }
+  .gegenteil-row input { flex-basis: 100%; }
+  .gegenteil-row .word { flex: 1 1 0; min-width: 0; }
+}
+/* Sprungleiste in der festen Fortschrittsleiste (Bericht 49, Punkt 7) */
+.sprung-leiste { display: flex; gap: 6px; align-items: center; overflow-x: auto; padding: 6px 0 2px; scrollbar-width: none; }
+.sprung-leiste[hidden] { display: none; }
+.sprung-wort { font-size: 13px; color: var(--ink-soft); margin-right: 2px; }
+.sprung-knopf { flex: 0 0 auto; min-width: 44px; height: 44px; border: 1px solid var(--line); background: var(--paper); color: var(--teal-dark); border-radius: 15px; font-size: 14px; font-weight: 600; cursor: pointer; padding: 0 8px; }
+.sprung-knopf:active { background: var(--good-bg); }
+/* Sehr lange Wörter (Zahlwörter wie „dreihundertachtundneunzigtausend…“) dürfen am Handy umbrechen (15.11.2026) */
+.blatt-saetze li, .blatt-merk td, .blatt-merk th, .blatt-tab td, .blatt-text p, .wl td { overflow-wrap: anywhere; }
+
+  /* ---- Übersicht (Lehrkraft-Startseite) ---- */
+  .ub-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0 10px; }
+  .ub-chip { padding: 6px 12px; border-radius: 999px; background: #EFEBDD; font-size: 14px; }
+  .ub-chip.gelb { background: #FBEFC5; } .ub-chip.rot { background: var(--bad-bg); } .ub-chip.orange { background: #FCE3CC; }
+  .ub-h { font-family: Georgia, serif; font-size: 20px; color: var(--teal-dark); margin: 22px 0 6px; }
+  .ub-h3 { font-size: 15px; margin: 14px 0 4px; color: var(--ink-soft); }
+  .ub-zeile { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 8px 10px; border-bottom: 1px solid var(--line); font-size: 14.5px; }
+  .ub-info { flex: 1 1 auto; min-width: 0; }
+  .ub-alter { color: var(--ink-soft); font-size: 12.5px; margin-left: 6px; white-space: nowrap; }
+  .ub-komm { color: var(--ink-soft); font-size: 13px; margin-top: 2px; }
+  .ub-knopf { flex: 0 0 auto; }
+  .ub-zettel { display: flex; gap: 6px; align-items: center; cursor: pointer; font-size: 13.5px; font-weight: 400; }
+  .ub-leer { color: var(--ink-soft); font-size: 14px; margin: 4px 0; }
+  .brett { display: flex; flex-wrap: wrap; gap: 10px; align-items: stretch; margin-top: 8px; }
+  .station { flex: 1 1 150px; min-width: 140px; max-width: 230px; border: 2px solid var(--line); border-radius: 10px; background: #FCFBF7; padding: 8px; }
+  .station.niveau-A1 { border-color: #9DBFB8; background: #F1F7F5; }
+  .station.niveau-A2 { border-color: #E2C98E; background: #FBF6E8; }
+  .station.niveau-S { border-style: dashed; }
+  .st-kopf { font-weight: 700; font-size: 13.5px; margin-bottom: 6px; color: var(--teal-dark); }
+  .st-nr { display: inline-block; min-width: 20px; height: 20px; line-height: 20px; text-align: center; border-radius: 50%; background: var(--teal); color: #fff; font-size: 11.5px; margin-right: 6px; }
+  .st-figuren { display: flex; flex-wrap: wrap; gap: 5px; min-height: 30px; }
+  .st-leer { color: #B5B0A0; }
+  .fig { position: relative; border: 2px solid var(--teal); background: #fff; color: var(--teal-dark); border-radius: 999px; padding: 4px 10px; font-size: 13px; font-weight: 600; cursor: pointer; }
+  .fig.wartet { border-color: #D9A400; background: #FFF6D6; }
+  .fig.wdh { border-color: var(--bad); background: var(--bad-bg); }
+  .fig.klein { cursor: default; padding: 1px 8px; font-size: 12px; }
+  .fig-badge { position: absolute; top: -8px; right: -6px; min-width: 18px; height: 18px; line-height: 18px; border-radius: 9px; background: #D9A400; color: #fff; font-size: 11px; text-align: center; }
+  .ub-legende { font-size: 13px; color: var(--ink-soft); margin-top: 10px; }
+  .detail-kopf { display: flex; align-items: center; gap: 12px; margin: 4px 0 10px; }
+  .detail-kopf h2 { font-family: Georgia, serif; margin: 0; font-size: 22px; }
+  .bw-zettel { display: flex; gap: 6px; align-items: center; margin: 8px 0; font-size: 14px; cursor: pointer; }
+
+  /* ---- Schritt-Matrix ---- */
+  .mx-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; background: #fff; margin-top: 6px; max-height: 70vh; }
+  .mx { border-collapse: separate; border-spacing: 0; font-size: 12px; }
+  .mx th, .mx td { border-bottom: 1px solid #EFEBDD; border-right: 1px solid #F3F0E6; padding: 0; }
+  .mx .mx-name { position: sticky; left: 0; background: #FCFBF7; z-index: 2; text-align: left; min-width: 150px; max-width: 190px; padding: 3px 6px; font-weight: 600; }
+  .mx-namebtn { background: none; border: none; cursor: pointer; font: inherit; font-weight: 600; color: var(--teal-dark); padding: 0; text-align: left; }
+  .mx thead th { position: sticky; top: 0; background: #F2EFE6; z-index: 3; }
+  .mx thead tr:nth-child(2) th { top: 26px; }
+  .mx-stufe { padding: 4px 6px !important; font-size: 11.5px; white-space: nowrap; }
+  .mx-stufe.niveau-A1 { background: #E3EFEB !important; } .mx-stufe.niveau-A2 { background: #F8EFD3 !important; } .mx-stufe.niveau-B1 { background: #E6E2F3 !important; }
+  .mx-spalte { min-width: 24px; font-weight: 500; color: var(--ink-soft); padding: 2px 2px !important; }
+  .mx-zelle { display: table-cell; min-width: 24px; height: 22px; cursor: pointer; }
+  .mx-legende .mx-zelle { display: inline-block; width: 14px; min-width: 14px; height: 14px; vertical-align: middle; margin: 0 3px 0 10px; border: 1px solid #D9D4C4; cursor: default; }
+  .mx-zelle.leer { background: #F4F2EA; } .mx-zelle.angefangen { background: #9DC3E6; } .mx-zelle.wartet { background: #F2C230; }
+  .mx-zelle.zettel { background: #F0955A; } .mx-zelle.wdh { background: #E06666; } .mx-zelle.fertig { background: #6DB98D; }
+  .mx-legende { font-size: 12.5px; color: var(--ink-soft); margin: 4px 0; line-height: 1.9; }
+
+/* Arbeitsblätter im Heft (31.10.2026) */
+.ub-loesung-box { border: 1px dashed var(--line); border-radius: 8px; padding: 8px 12px; margin: 0 0 10px; font-size: 14px; background: var(--paper); }
+.ub-loesung-teil ol { margin: 4px 0 8px; padding-left: 22px; }
+
+/* Grammatik-Hybrid (02.11.2026): Heft-Teilaufgaben in der Bewertung */
+.bw-heft { display: inline-block; font-size: 11px; font-weight: 700; color: #fff; background: var(--teal); border-radius: 6px; padding: 1px 6px; margin-right: 6px; vertical-align: 1px; }
+.bw-heft-loesung { color: var(--teal-dark); font-weight: 600; margin-top: 2px; }
+.bw-heftzeile { background: var(--good-bg); }
+.ub-vokheft table { border-collapse: collapse; margin: 4px 0 10px; font-size: 14px; }
+.ub-vokheft td { border-bottom: 1px solid var(--line, #ddd); padding: 3px 10px 3px 0; vertical-align: top; }
+.ub-vokheft td:first-child { font-weight: 700; white-space: nowrap; }
+
+/* ==========================================================================
+   Ebbers A1 Kurs — Gestaltung (19.11.2026). Wird als LETZTES an das CSS gehängt und überschreibt
+   das kindgerechte Erscheinungsbild des DaZ-Tools: ruhiger, akademischer, klare Karten, eine Schrift.
+   Farben nur über die Variablen unten ändern.
+   ========================================================================== */
+:root {
+  --bg: #F4F6FA;
+  --paper: #FFFFFF;
+  --ink: #1B2333;
+  --ink-soft: #586176;
+  --line: #E1E5EE;
+  --teal: #2F4BB5;          /* Hauptfarbe (Name bleibt aus dem DaZ-Tool, Wert neu: Indigo) */
+  --teal-dark: #1B2A6B;
+  --amber: #D9822B;
+  --good: #23815A;
+  --good-bg: #E6F4EC;
+  --bad: #C2413A;
+  --bad-bg: #FBEAE9;
+  --warn-bg: #FFF4E0;
+  --warn: #9A5B0E;
+  --radius: 14px;
+  --schatten: 0 1px 2px rgba(27, 35, 51, .06), 0 4px 16px rgba(27, 35, 51, .06);
+  --schrift: "Inter", "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+  --akzent-hell: #EDF0FB;
+}
+html, body { background: var(--bg); }
+body { font-family: var(--schrift); font-size: 16px; letter-spacing: .005em; -webkit-font-smoothing: antialiased; }
+
+/* Eine Schrift für alles: Georgia (Kinderbuch-Anmutung) ersetzen */
+h1, h2, h3, h4,
+header.top h1, section.teil h2, .test-card .info h3, .summary h2, .submission .head h3,
+.ib-item-info h3, .grammatik-inhalt h3 { font-family: var(--schrift) !important; letter-spacing: -.01em; }
+
+/* Kopf: dunkles Indigo mit leichtem Verlauf */
+header.top {
+  background: linear-gradient(135deg, #1B2A6B 0%, #2F4BB5 100%);
+  color: #FFFFFF; padding: 28px 18px 24px; margin-bottom: 24px;
+  box-shadow: 0 2px 12px rgba(27, 42, 107, .18);
+}
+header.top .eyebrow { color: #C9D2F5; font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+header.top h1 { font-size: 26px; font-weight: 700; }
+header.top .sub, header.top .backlink { color: #DCE2FA; }
+
+/* Karten */
+section.teil, .card, .panel, .test-card, .summary, .submission {
+  border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--schatten); background: var(--paper);
+}
+section.teil h2 { font-size: 20px; font-weight: 700; color: var(--teal-dark); }
+.test-card { transition: transform .12s ease, box-shadow .12s ease; }
+.test-card:hover { transform: translateY(-1px); box-shadow: 0 2px 4px rgba(27,35,51,.08), 0 8px 24px rgba(27,35,51,.08); }
+
+/* Knöpfe */
+.btn { border-radius: 10px; font-weight: 600; letter-spacing: .01em; box-shadow: 0 1px 2px rgba(27,42,107,.15); }
+.btn.secondary { box-shadow: none; }
+.btn.secondary:hover, .mc-opt.selected, .img-opt.selected { background: var(--akzent-hell); }
+
+/* Auswahl und Felder */
+.mc-opt, .img-opt { background: #FFFFFF; border-radius: 10px; }
+.mc-opt:hover, .img-opt:hover { border-color: var(--teal); }
+input[type="text"], input:not([type]), textarea, select {
+  border-radius: 10px; border-color: var(--line);
+}
+input[type="text"]:focus, input:not([type]):focus, textarea:focus, select:focus {
+  outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px rgba(47, 75, 181, .18);
+}
+.item-num { color: var(--teal); font-weight: 700; }
+.locked-tag { border-radius: 999px; }
+
+/* Ruhigere Flächen statt Beige */
+.img-opt, .mc-opt, .bw-teil, .erg-box { background-color: #FFFFFF; }
+
+@media (prefers-reduced-motion: reduce) { .test-card { transition: none; } }
+
+/* ---------- Lehrkraft-Bereich „Kursplan“ (Entwurf) ---------- */
+.kp-wrap { max-width: 1180px; margin: 0 auto; padding: 0 18px; }
+.kp-nav { display: flex; gap: 6px; margin: 0 0 18px; flex-wrap: wrap; }
+.kp-reiter { border: 1px solid var(--line); background: var(--paper); color: var(--ink); border-radius: 999px; padding: 9px 18px; font: inherit; font-weight: 600; cursor: pointer; min-height: 44px; }
+.kp-reiter.an { background: var(--teal); border-color: var(--teal); color: #fff; }
+.kp-spalten { display: grid; grid-template-columns: 340px 1fr; gap: 20px; align-items: start; }
+@media (max-width: 860px) { .kp-spalten { grid-template-columns: 1fr; } }
+.kp-links { position: sticky; top: 12px; max-height: calc(100vh - 24px); overflow: auto; }
+@media (max-width: 860px) { .kp-links { position: static; max-height: none; } }
+.kp-lek { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; margin-bottom: 8px; }
+.kp-lek-kopf { font-size: 14px; margin-bottom: 6px; }
+.kp-kaestchen { display: flex; gap: 5px; flex-wrap: wrap; }
+.kp-k { width: 34px; height: 34px; border-radius: 8px; border: 2px solid transparent; font: inherit; font-size: 13px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; }
+.kp-legende .kp-k { width: 14px; height: 14px; border-radius: 4px; vertical-align: middle; cursor: default; }
+.kp-legende { font-size: 13px; color: var(--ink-soft); margin: 10px 0; }
+.kp-gemeinsam { background: #E3E8FA; color: #1B2A6B; } .kp-gemeinsam.fertig { background: #2F4BB5; color: #fff; }
+.kp-plattform { background: #E2F2EA; color: #145238; } .kp-plattform.fertig { background: #23815A; color: #fff; }
+.kp-test { background: #FDEBD8; color: #8A4B0B; } .kp-test.fertig { background: #D9822B; color: #fff; }
+.kp-k.aktiv { border-color: var(--ink); }
+.kp-typ { border-radius: 999px; padding: 1px 9px; font-size: 12.5px; font-weight: 700; }
+.kp-ort, .kp-leise { color: var(--ink-soft); font-size: 14px; }
+.kp-als-naechstes { display: inline-block; background: var(--akzent-hell); color: var(--teal-dark); font-weight: 700; font-size: 13px; border-radius: 999px; padding: 3px 12px; margin: 0 0 8px; }
+.kp-titel { margin: 4px 0 10px; font-size: 24px; }
+.kp-rechts h3 { font-size: 15px; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-soft); margin: 22px 0 8px; }
+.kp-ablauf { padding-left: 22px; } .kp-ablauf li { margin-bottom: 8px; }
+.kp-min { display: inline-block; min-width: 58px; font-weight: 700; color: var(--teal); }
+.kp-mat { border: 1px solid var(--line); border-radius: 12px; margin-bottom: 10px; background: #FBFCFE; }
+.kp-mat summary { cursor: pointer; padding: 12px 14px; font-weight: 600; }
+.kp-mat-inhalt { padding: 0 14px 6px; } .kp-mat-knoepfe { padding: 0 14px 14px; display: flex; gap: 8px; flex-wrap: wrap; }
+.kp-art { font-size: 11.5px; text-transform: uppercase; letter-spacing: .06em; background: var(--akzent-hell); color: var(--teal-dark); border-radius: 6px; padding: 2px 7px; margin-right: 6px; }
+.kp-tabwrap { overflow-x: auto; } .kp-tab { border-collapse: collapse; margin: 8px 0; font-size: 15px; }
+.kp-tab th, .kp-tab td { border: 1px solid var(--line); padding: 6px 10px; text-align: left; vertical-align: top; } .kp-tab th { background: var(--akzent-hell); }
+.kp-fertig { margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--line); }
+.kp-fortschritt { font-size: 13px; color: var(--ink-soft); margin-bottom: 4px; }
+.kp-balken { height: 8px; background: var(--line); border-radius: 999px; overflow: hidden; margin-bottom: 4px; } .kp-balken span { display: block; height: 100%; background: var(--teal); }
+.kp-suche { width: 100%; font-size: 16px; padding: 12px 14px; border: 2px solid var(--line); border-radius: 10px; margin-bottom: 12px; }
+body.kp-vollbild { padding: 40px; font-size: 26px; } body.kp-vollbild .kp-tab { font-size: 24px; }
+@media print { body.kp-vollbild { padding: 0; font-size: 14pt; } }
+

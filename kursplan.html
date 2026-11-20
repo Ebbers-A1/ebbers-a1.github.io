@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ebbers A1 Kurs — Kursplan</title>
+<script>
+  // ==== VERSION — nach JEDER Änderung an css/js/data hier hochzählen (z. B. 20260924b), damit Browser die neuen
+  //      Dateien sofort laden und nicht mit alten mischen. In index.html UND lehrkraft.html gleich halten. ====
+  var APP_V = '20261120a';
+  document.write('<link rel="stylesheet" href="css/style.css?v=' + APP_V + '">');
+</script>
+</head>
+<body>
+
+<header class="top"><div class="kp-wrap"><p class="eyebrow">Ebbers A1 Kurs · Lehrkraft</p><h1>Kursplan</h1><p class="sub">Unterricht vorbereiten, durchführen und nachbereiten</p></div></header>
+<div class="kp-wrap" id="kp"></div>
+<script>
+  window.TRESOR_AKTIV = true; window.TRESOR_LEHRKRAFT = true;
+  // ==== LADER — lädt alle Skripte in fester Reihenfolge. Neue Datei (z. B. data/a1-lf2.js) hier eintragen. ====
+  var DATEIEN = [
+    'data/lernplan.js',
+    'data/lk-lernplan.js',
+    'js/kursplan.js'
+  ];
+  // Ebbers A1 Kurs: Ist der Tresor aktiv (ebbers_tresor.js setzt TRESOR_AKTIV), kommen die Inhalte erst nach dem Code.
+  if (window.TRESOR_AKTIV) {
+    window.TRESOR_DATEIEN = DATEIEN;
+    document.write('<script src="js/tresor.js?v=' + APP_V + '"><\/script>');
+    document.write('<script>TRESOR_START(TRESOR_DATEIEN)<\/script>');
+  } else DATEIEN.forEach(function (src) { document.write('<script src="' + src + '?v=' + APP_V + '"><\/script>'); });
+</script>
+<noscript><p style="padding:20px">Bitte JavaScript aktivieren.</p></noscript>
+</body>
+</html>
