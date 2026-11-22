@@ -208,7 +208,7 @@ async function refreshProgress() {
     // Alle Lernfelder NACH dem aktiven bleiben komplett gesperrt (nichts hinzufügen), außer manuell freigeschaltet
   });
 
-  if (istPruefkonto(name)) CURRICULUM.forEach(lf => lf.items.forEach(id => unlocked.add(id)));   // Prüfkonto: alles offen
+  if (window.EBB_KURSFREIGABE) { const _frei = await window.EBB_KURSFREIGABE(isDoneLocal); if (_frei) { unlocked.clear(); _frei.forEach(id => unlocked.add(id)); } } if (istPruefkonto(name)) CURRICULUM.forEach(lf => lf.items.forEach(id => unlocked.add(id)));   // Prüfkonto: alles offen
    progressCache = { name, doneTests, doneActs, unlocked, manualAccessUpTo, testApproval, statusComments, statusInfo, pausierteTests, loaded: true };
   renderAll();
 }

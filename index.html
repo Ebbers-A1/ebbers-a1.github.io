@@ -7,7 +7,7 @@
 <script>
   // ==== VERSION — nach JEDER Änderung an css/js/data hier hochzählen (z. B. 20260924b), damit Browser die neuen
   //      Dateien sofort laden und nicht mit alten mischen. In index.html UND lehrkraft.html gleich halten. ====
-  var APP_V = '20261120g';
+  var APP_V = '20261122a';
   document.write('<link rel="stylesheet" href="css/style.css?v=' + APP_V + '">');
 </script>
 </head>
@@ -155,7 +155,9 @@
     'js/korrektur.js',
     'js/student.js',
     'js/bewertung.js',
-    'js/selbstkontrolle.js'
+    'js/selbstkontrolle.js',
+    'data/lernplan.js',
+    'js/kursfreigabe.js'
   ];
   // Ebbers A1 Kurs: Ist der Tresor aktiv (ebbers_tresor.js setzt TRESOR_AKTIV), kommen die Inhalte erst nach dem Code.
   if (window.TRESOR_AKTIV) {
